@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/maxbasic94/WeatherInformer/issues"
   },
-  "homepage": "https://github.com/maxbasic94/WeatherInformer#readme"
+  "homepage": "https://github.com/maxbasic94/WeatherInformer#readme",
+  "devDependencies": {
+    "webpack": "^5.64.0",
+    "webpack-cli": "^4.9.1"
+  }
 }
