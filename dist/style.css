@@ -23,6 +23,7 @@ body {
         font-size: 1em;
     }
     .app {
-        width: 98%;
+        width: 97vw;
+        height: 95vh;
     }
 }
