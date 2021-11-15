@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/maxbasic94/WeatherInformer#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.16.0",
     "babel-jest": "^27.3.1",
     "eslint": "^8.2.0",
     "webpack": "^5.64.0",
