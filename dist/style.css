@@ -10,6 +10,7 @@ body {
 
 .app {
     display: flex;
+    flex-direction: column;
     margin: 5px auto;
     width: 600px;
     border: solid 2px darkblue;
@@ -17,6 +18,16 @@ body {
     height: 98.5vh;
 }
 
+.controlMenu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.informer {
+    flex-grow: 40;
+}
 
 @media screen and (max-width: 600px) {
     * {
@@ -24,6 +35,6 @@ body {
     }
     .app {
         width: 97vw;
-        height: 95vh;
+        height: 94vh;
     }
 }
