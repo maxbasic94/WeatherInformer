@@ -10,12 +10,14 @@ body {
 
 .app {
     display: flex;
+    background-color: #1c2932;
     flex-direction: column;
     margin: 5px auto;
     width: 600px;
     border: solid 2px darkblue;
     border-radius: 2%;
     height: 98.5vh;
+    color: white;
 }
 
 .controlMenu {
@@ -28,6 +30,40 @@ body {
 .informer {
     flex-grow: 40;
 }
+.currentInfo {
+    margin-top: 30px;
+    display: block;
+    text-align: center;
+}
+
+.city {
+    font-size: 1.5em;
+}
+
+.currentTemp {
+    font-size: 5em;
+    margin-left: 20px;
+}
+
+.currentCondition {
+    /* margin-left: 40px; */
+    font-size: 1.2em;
+    padding: 0.1% 1%;
+    display: inline-block;
+    background-color: #353362;
+    border-radius: 10px;
+}
+
+.humPresSpeed {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* .humidity {
+
+} */
 
 @media screen and (max-width: 600px) {
     * {
