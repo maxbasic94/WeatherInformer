@@ -16,7 +16,7 @@ body {
     width: 600px;
     border: solid 2px darkblue;
     border-radius: 2%;
-    height: 98.5vh;
+    height: 98vh;
     color: white;
 }
 
@@ -46,7 +46,6 @@ body {
 }
 
 .currentCondition {
-    /* margin-left: 40px; */
     font-size: 1.2em;
     padding: 0.1% 1%;
     display: inline-block;
@@ -55,15 +54,50 @@ body {
 }
 
 .humPresSpeed {
-    margin-top: 10px;
+    margin-top: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-/* .humidity {
+.humidity img, .pressure img, .windSpeed img {
+    margin: 0 5px 5px 0;
+    vertical-align: middle;
+}
 
-} */
+.sun {
+    padding: 0 6% 0 7%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sunset img, .sunrise img {
+    margin: 0 5px 0 5px;
+    vertical-align: middle;
+}
+
+.caption {
+    color: #37515e;
+    margin: 5% 0 0 5%;
+    font-size: 1.2em;
+}
+
+.dayForecast {
+    margin: 1% 0 0 3%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+.dayForecast::-webkit-scrollbar {
+    width: 0;
+}
+
+.timeGroup {
+    text-align: center;
+}
 
 @media screen and (max-width: 600px) {
     * {
