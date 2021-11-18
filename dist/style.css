@@ -18,6 +18,8 @@ body {
     color: white;
 }
 
+/* styles for homePage*/
+
 .controlMenu {
     padding-bottom: 5px;
     display: flex;
@@ -135,6 +137,22 @@ body {
 }
 .minTempNextDay {
     color: #356880;
+}
+
+/* styles for favouritePage*/
+
+.favouritePage {
+    flex-grow: 20;
+    display: flex;
+    flex-direction: column;
+}
+
+/* styles for settingPage*/
+
+.settingPage {
+    flex-grow: 20;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {
