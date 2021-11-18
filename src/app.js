@@ -1,4 +1,8 @@
 const url = 'http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=Minsk&days=4&aqi=no&alerts=no';
+import barometer from '../images/barometer.png'
+let img = document.createElement('img')
+img.src = barometer
+console.log(img)
 
 function createDivWithNextDaysInfo(day) {
     const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
@@ -26,7 +30,7 @@ function getDivWithАdditionalInfo(current) {
     const divHumPresSpeed = document.createElement('div');
     divHumPresSpeed.className = 'humPresSpeed';
     divHumPresSpeed.innerHTML = `
-    <div class="humidity"><img сlass='imgHumPresSpeed' src="../images/humidity.png" height="30px" width="30px">${current.humidity} %</div>
+    <div class="humidity"><img сlass='imgHumPresSpeed' src="${barometer}" height="30px" width="30px">${current.humidity} %</div>
     <div class="pressure"><img сlass='imgHumPresSpeed' src="../images/barometer.png" height="30px" width="30px">${current.pressure_mb} mBar</div>
     <div class="windSpeed"><img сlass='imgHumPresSpeed' src="../images/windSpeed.png" height="30px" width="30px">${current.wind_kph} km/h</div>`;
     return divHumPresSpeed;
