@@ -11,14 +11,15 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #1c2932;
-    margin: 5px auto;
+    margin: 0px auto;
     max-width: 600px;
-    height: 98vh;
+    height: 100vh;
     min-height: 620px;
     color: white;
 }
 
 .controlMenu {
+    padding-bottom: 5px;
     display: flex;
     justify-content: center;
     justify-content: space-around;
