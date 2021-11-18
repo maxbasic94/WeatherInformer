@@ -128,7 +128,7 @@ function createHomePage(url) {
  */
 
     async function getData(url) {
-        const response = await fetch(url);
+        const response = await fetch(url, {mode: 'cors'});
         if (response.status == 200) {
             const json = await response.json();
             return json;

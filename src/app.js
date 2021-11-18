@@ -45,5 +45,5 @@ controlMenu.addEventListener('click', ({target}) => {
             break;
     }
 });
-
-createHomePage(url);
+createfavouritePage();
+// createHomePage(url);
