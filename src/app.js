@@ -1,7 +1,5 @@
 const url = 'http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=Minsk&days=4&aqi=no&alerts=no';
 
-const divInformer = document.querySelector('.informer');
-
 function createDivWithNextDaysInfo(day) {
     const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
     const divNextDay = document.createElement('div');
@@ -19,9 +17,8 @@ function getDivWithCurrentInfo(location, current) {
     divCurrentInfo.className = 'currentInfo';
     divCurrentInfo.innerHTML = `
         <div class="city">${location.name}</div>
-        <div class="currentTemp">${current.temp_c}°</div>
+        <div class="currentTemp">${current.temp_c}°<img src="https:${current.condition.icon}"></div>
         <div class="currentCondition">${current.condition.text}</div>`
-
     return divCurrentInfo;
 }
  
@@ -54,7 +51,7 @@ function createDivWithTodayForecast(day)  {
     return divGroup;
 }
 
- function getFullNameWeekDay(numDay) {
+function getFullNameWeekDay(numDay) {
     switch (numDay) {
         case 0: return 'Sunday';
         case 1: return 'Monday';  
@@ -67,6 +64,27 @@ function createDivWithTodayForecast(day)  {
     }
 }
 
+function getDivWithNextDaysForecast(forecast) {
+    const divNextDays = document.createElement('div');
+    divNextDays.className = 'nextDays';
+    forecast.forecastday.slice(1).forEach(day => divNextDays.append(createDivWithNextDaysInfo(day)));
+    return divNextDays;
+}
+
+function getDivWithTodayForecats(forecast, current) {
+    const divTodayForecast = document.createElement('div');
+    const divdayForecast = document.createElement('div');
+    const currentTime = current.last_updated.slice(-5).split(':')[0];
+    const arrTodayForecast = forecast.forecastday[0].hour.slice(currentTime).concat(forecast.forecastday[1].hour).splice(1, 24);
+    divdayForecast.className = 'dayForecast';
+    divTodayForecast.className = 'today';
+    divTodayForecast.innerHTML = `<div class="caption">Today</div>`;
+
+    arrTodayForecast.forEach((hour) => divdayForecast.append(createDivWithTodayForecast(hour)));
+    divTodayForecast.append(divdayForecast);
+    return divTodayForecast;
+}
+
 /**
  * @param {string} url 
  * @returns {Promise} Promise
@@ -74,7 +92,6 @@ function createDivWithTodayForecast(day)  {
 
 async function getData(url) {
     const response = await fetch(url);
-
     if (response.status == 200) {
         const json = await response.json();
         return json;
@@ -88,44 +105,32 @@ getData(url)
 
 function createPage(data) {
     const {location, current, forecast} = data
+    const divInformer = document.createElement('div');
+    divInformer.className = 'informer';
 
     const divCurrentInfo = getDivWithCurrentInfo(location, current);
     const divHumPresSpeed = getDivWithАdditionalInfo(current);
     const divSun = getDivWithSunriseSunsetInfo(forecast);
-    const divTodayForecast = getDivWithTodayForecats(forecast);
+    const divTodayForecast = getDivWithTodayForecats(forecast, current);
+    const divNextDays = getDivWithNextDaysForecast(forecast);
     
     divInformer.append(divCurrentInfo);
     divInformer.append(divHumPresSpeed);
     divInformer.append(divSun);
     divInformer.append(divTodayForecast);
-    
-    const divNextDays = document.createElement('div');
-    divNextDays.className = 'nextDays'
-    forecast.forecastday.slice(1).forEach(day => divNextDays.append(createDivWithNextDaysInfo(day)));
     divInformer.append(divNextDays);
-
+    
     console.log(location);
     console.log(current);
     console.log(forecast);
+
+    document.querySelector('.app').prepend(divInformer);
+
+    document.querySelector('.dayForecast').addEventListener('mousewheel', (event) => {
+        event = window.event || event;
+        var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
+        document.querySelector('.dayForecast').scrollLeft -= (delta * 40);
+        event.preventDefault();
+    }, false);
 }
 
-function getDivWithTodayForecats(forecast) {
-    const divTodayForecast = document.createElement('div');
-    const divdayForecast = document.createElement('div');
-    divdayForecast.className = 'dayForecast';
-    divTodayForecast.className = 'today';
-    divTodayForecast.innerHTML = `<div class="caption">Today</div>`;
-
-    forecast.forecastday[0].hour.forEach((day) => divdayForecast.append(createDivWithTodayForecast(day)));
-    console.log(divdayForecast)
-    divTodayForecast.append(divdayForecast);
-    return divTodayForecast;
-}
-
-// document.querySelector('.dayForecast').addEventListener('mousewheel', (event) => {
-//     console.log('test')
-//     event = window.event || event;
-//     var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
-//     document.querySelector('.dayForecast').scrollLeft -= (delta * 40);
-//     event.preventDefault();
-// }, false);
