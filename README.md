@@ -1,7 +1,7 @@
 # WeatherInformer
 
 This application represents weather informer. \
-You can check how it works here: 
+You can check how it works here: https://weather-informer.netlify.app
 
 ## Task
 
