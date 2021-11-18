@@ -9,6 +9,6 @@ Link on the document: https://docs.google.com/document/d/1GLfIU93NLco1XkdUXnje-k
 
 ## How to use
 
-![alt text](images/favourite.svg)
+![favourite](./images/favourite.svg)
 
 ## Folders structure
