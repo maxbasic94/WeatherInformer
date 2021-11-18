@@ -1,8 +1,10 @@
-const url = 'http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=Minsk&days=4&aqi=no&alerts=no';
+import humidity from '../images/humidity.png'
 import barometer from '../images/barometer.png'
-let img = document.createElement('img')
-img.src = barometer
-console.log(img)
+import windSpeed from '../images/windSpeed.png'
+import sunrise from '../images/sunrise.png'
+import sunset from '../images/sunset.png'
+
+const url = 'http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=Minsk&days=4&aqi=no&alerts=no';
 
 function createDivWithNextDaysInfo(day) {
     const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
@@ -30,9 +32,9 @@ function getDivWithАdditionalInfo(current) {
     const divHumPresSpeed = document.createElement('div');
     divHumPresSpeed.className = 'humPresSpeed';
     divHumPresSpeed.innerHTML = `
-    <div class="humidity"><img сlass='imgHumPresSpeed' src="${barometer}" height="30px" width="30px">${current.humidity} %</div>
-    <div class="pressure"><img сlass='imgHumPresSpeed' src="../images/barometer.png" height="30px" width="30px">${current.pressure_mb} mBar</div>
-    <div class="windSpeed"><img сlass='imgHumPresSpeed' src="../images/windSpeed.png" height="30px" width="30px">${current.wind_kph} km/h</div>`;
+    <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity} %</div>
+    <div class="pressure"><img сlass='imgHumPresSpeed' src="${barometer}" alt="Pres" height="30px" width="30px">${current.pressure_mb} mBar</div>
+    <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${current.wind_kph} km/h</div>`;
     return divHumPresSpeed;
 }
 
@@ -40,8 +42,8 @@ function getDivWithSunriseSunsetInfo(forecast) {
     const divSun = document.createElement('div');
     divSun.className = 'sun';
     divSun.innerHTML = `
-    <div class="sunrise"><img class="sunrise" src="../images/sunrise.png" height="30px" width="30px">${forecast.forecastday[0].astro.sunrise}</div>
-    <div class="sunset">${forecast.forecastday[0].astro.sunset}<img class="sunset" src="../images/sunset.png" height="30px" width="30px"></div>`
+    <div class="sunrise"><img class="sunrise" src="${sunrise}" alt="sunrise" height="30px" width="30px">${forecast.forecastday[0].astro.sunrise}</div>
+    <div class="sunset">${forecast.forecastday[0].astro.sunset}<img class="sunset" src="${sunset}" alt="sunset" height="30px" width="30px"></div>`
     return divSun;
 }
 

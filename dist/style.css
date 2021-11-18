@@ -13,8 +13,6 @@ body {
     background-color: #1c2932;
     margin: 5px auto;
     max-width: 600px;
-    border: solid 2px darkblue;
-    border-radius: 2%;
     height: 98vh;
     min-height: 620px;
     color: white;
@@ -143,9 +141,14 @@ body {
         font-size: 1em;
     }
 
+    body {
+        background-color: #1c2932;
+    }
+
     .app {
+        margin: 0;
         width: 99vw;
-        height: 94vh;
+        height: 90vh;
     }
 
     .timeGroup {
