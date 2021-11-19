@@ -23,7 +23,6 @@ body {
 .controlMenu {
     padding-bottom: 5px;
     display: flex;
-    justify-content: center;
     justify-content: space-around;
     align-items: center;
 }
@@ -34,10 +33,11 @@ body {
     flex-direction: column;
 }
 .currentInfo {
+    display: flex;
     flex-grow: 2;
-    margin-top: 10px;
-    display: block;
     text-align: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .city {
@@ -57,9 +57,11 @@ body {
 .currentCondition {
     font-size: 1.2em;
     padding: 0.1% 1%;
-    display: inline-block;
+    display: block;
     background-color: #353362;
     border-radius: 10px;
+    width: max-content;
+    align-self: center;
 }
 
 .humPresSpeed {
@@ -147,14 +149,6 @@ body {
     flex-direction: column;
 }
 
-/* styles for settingPage*/
-
-.settingPage {
-    flex-grow: 20;
-    display: flex;
-    flex-direction: column;
-}
-
 .searchDiv {
     align-self: center;
     margin-top: 10px;
@@ -182,6 +176,14 @@ body {
     height: 25px;
     border: none;
     background-color: inherit;
+}
+
+/* styles for settingPage*/
+
+.settingPage {
+    flex-grow: 20;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {

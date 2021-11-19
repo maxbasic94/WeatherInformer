@@ -90,7 +90,7 @@ function getDivWithTodayForecats(forecast, current) {
 }
 
 function createPage(data) {
-    const {location, current, forecast} = data
+    const {location, current, forecast} = data;
     const divInformer = document.createElement('div');
     divInformer.className = 'informer';
 
@@ -106,12 +106,7 @@ function createPage(data) {
     divInformer.append(divTodayForecast);
     divInformer.append(divNextDays);
     
-    console.log(location);
-    console.log(current);
-    console.log(forecast);
-
     document.querySelector('.app').prepend(divInformer);
-
     document.querySelector('.dayForecast').addEventListener('mousewheel', (event) => {
         event = window.event || event;
         var delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));

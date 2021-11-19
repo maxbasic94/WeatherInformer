@@ -1,9 +1,12 @@
 import searchImg from '../images/search.png'
 
+// const searchCitiesUrl = `http://autocomplete.travelpayouts.com/places2?term=Minsk&locale=en&types[]=city&callback=function`
+
 function createSearchInput() {
    const searchInput = document.createElement('input');
    searchInput.className = 'search';
    searchInput.type = 'text';
+   searchInput.placeholder = 'Search'
    return searchInput;
 }
 
@@ -16,14 +19,23 @@ function createSubmitInput() {
    return submitInput;
 }
 
-function createDivSearch() {
-   const divSearch = document.createElement('div');
+function createSearchForm() {
+   const searchForm = document.createElement('form');
    const searchInput = createSearchInput();
    const submitInput = createSubmitInput();
 
+   searchForm.className = 'searchForm';
+   searchForm.append(searchInput);
+   searchForm.append(submitInput);
+   return searchForm;
+}
+
+function createDivSearch() {
+   const divSearch = document.createElement('div');
+   const searchForm = createSearchForm()
+
    divSearch.className = 'searchDiv';
-   divSearch.append(searchInput);
-   divSearch.append(submitInput);
+   divSearch.append(searchForm);
    return divSearch;   
 }
 
@@ -31,6 +43,15 @@ function createDivFavouriteCities() {
    const divFavouriteCities = document.createElement('div');
    divFavouriteCities.className = 'favouriteCities';
    return divFavouriteCities;
+}
+
+async function getData(url) {
+   const response = await fetch(url, {mode: 'cors'});
+   if (response.status == 200) {
+       const json = await response.json();
+       return json;
+   }
+   throw new Error(response.status);
 }
 
 function createfavouritePage() {
@@ -43,6 +64,15 @@ function createfavouritePage() {
    divFavouritePage.append(divFavouriteCities);
 
    document.querySelector('.app').prepend(divFavouritePage);
-}
+   document.querySelector('.searchForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const inputValue = document.querySelector('.search').value;
+      const data = getData(`http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${inputValue}&days=4&aqi=no&alerts=no`);
+      data
+         .then(data => console.log(data))
+         .catch(alert);
+      document.querySelector('.search').value = '';
+   })
+}   
 
 export default createfavouritePage;
