@@ -1,33 +1,46 @@
-function createLocationDescriptionDiv(location) {
-    const locationDescriptionDiv = document.createElement('div');
-    locationDescriptionDiv.className = 'locationDescriptionDiv';
-    locationDescriptionDiv.textContent = `${location.name}, ${location.country}`;
-    return locationDescriptionDiv;
+import humidity from '../images/humidity.png'
+import barometer from '../images/barometer.png'
+import windSpeed from '../images/windSpeed.png'
+
+function createLocationExtraInfoDiv(current) {
+    const locationExtraInfoDiv = document.createElement('div');
+    locationExtraInfoDiv.innerHTML = `
+    <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${current.wind_kph} km/h</div>
+    <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity} %</div>
+    <div class="pressure"><img сlass='imgHumPresSpeed' src="${barometer}" alt="Pres" height="30px" width="30px">${current.pressure_mb} mBar</div>`;
+    locationExtraInfoDiv.className = 'locationExtraInfoDiv'
+    return locationExtraInfoDiv;
 }
 
-function createLocationCaptionDiv() {
-    const locationCaptionDiv = document.createElement('div');
-    locationCaptionDiv.textContent = 'Your Location Now'
-    locationCaptionDiv.className = 'locationCaptionDiv';
-    return locationCaptionDiv;
+function createLocationInfoDiv(current) {
+    const locationInfoDiv = document.createElement('div');
+    locationInfoDiv.innerHTML = `
+    <div class="locationIconDiv"><img class="sunrise" src="https:${current.condition.icon}" alt="sunrise" height="150px" width="150px"></div>
+    <div class="locationIconDescriptionDiv">${current.condition.text}</div>
+    <div class="localTempDiv">${current.temp_c}°</div>`;
+    locationInfoDiv.className = 'locationInfoDiv';
+    return locationInfoDiv;
 }
 
 function createLocationDiv(location) {
     const locationDiv = document.createElement('div');
-    const locationCaptionDiv = createLocationCaptionDiv();
-    const locationDescriptionDiv = createLocationDescriptionDiv(location);
+    locationDiv.innerHTML = `
+    <div class="locationCaptionDiv">Your Location Now</div>
+    <div class="locationDescriptionDiv">${location.name}, ${location.country}</div>`
     locationDiv.className = 'locationDiv';
-    locationDiv.append(locationCaptionDiv);
-    locationDiv.append(locationDescriptionDiv);
     return locationDiv
 }
 
 function createPage(data) {
     const {current, location} = data;
     const locationDiv = createLocationDiv(location);
+    const locationInfoDiv = createLocationInfoDiv(current);
+    const locationExtraInfoDiv = createLocationExtraInfoDiv(current);
     console.log(current);
     console.log(location);
     document.querySelector('.settingPage').append(locationDiv);
+    document.querySelector('.settingPage').append(locationInfoDiv);
+    document.querySelector('.settingPage').append(locationExtraInfoDiv);    
 }
 
 async function getData() {
