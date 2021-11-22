@@ -11,6 +11,8 @@ function changeTemperatureUnit() {
         document.querySelector('.tempSettingUnit').textContent = 'Celsius';
         localStorage.temperatureUnit = 'c';
     }
+    document.querySelector('.settingPage').remove();
+    createSettingPage()
 }
 
 function changeWindSpeedUnit() {
@@ -21,6 +23,8 @@ function changeWindSpeedUnit() {
         document.querySelector('.windSpeedSettingUnit').textContent = 'kph';
         localStorage.windSpeedUnit = 'kph';
     }
+    document.querySelector('.settingPage').remove();
+    createSettingPage()
 }
 
 function createPage(data) {
