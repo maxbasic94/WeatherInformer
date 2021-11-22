@@ -56,7 +56,7 @@ body {
 
 .currentCondition {
     font-size: 1.2em;
-    padding: 0.1% 1%;
+    padding: 1% 1.5%;
     display: block;
     background-color: #353362;
     border-radius: 10px;
@@ -92,17 +92,24 @@ body {
 }
 
 .today {
+    display: flex;
     flex-grow: 1;
+    background: #273844;
+    width: 96%;
+    align-self: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px 0;
 }
 
 .caption {
     color: #356880;
-    margin: 0 0 0 5%;
+    margin: 0 0 0 2%;
     font-size: 1.2em;
 }
 
 .dayForecast {
-    margin: 1% 0 0% 3%;
+    margin: 1% 0 0% 0%;
     display: flex;
     flex-direction: row;
     overflow-x: auto;
@@ -118,6 +125,13 @@ body {
 
 .nextDays {
     flex-grow: 1;
+    align-self: center;
+    background: #273844;
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 5px;
 }
 
 .nextDay {
@@ -214,7 +228,7 @@ body {
 
 .locationIconDescriptionDiv{
     font-size: 1.2em;
-    padding: 0.1% 1%;
+    padding: 1% 1.5%;
     display: block;
     background-color: #353362;
     border-radius: 10px;
@@ -231,6 +245,31 @@ body {
     flex-grow: 1;
     display: flex;
     justify-content: space-evenly;
+}
+
+.locationEditDiv {
+    flex-grow: 1;
+    background: #273844;
+    width: 96%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.tempSettingDiv, .speedWindSettingDiv, .sourceSettingDiv {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10% 0 10%;
+}
+
+.tempSettingUnit, .windSpeedSettingUnit, .sourceSettingUnit {
+    color: #356880;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {

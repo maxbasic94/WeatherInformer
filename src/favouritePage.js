@@ -67,6 +67,8 @@ function createfavouritePage() {
    document.querySelector('.searchForm').addEventListener('submit', (event) => {
       event.preventDefault();
       const inputValue = document.querySelector('.search').value;
+      if (!inputValue) return;
+      console.log(inputValue)
       const data = getData(`http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${inputValue}&days=4&aqi=no&alerts=no`);
       data
          .then(data => console.log(data))

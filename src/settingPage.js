@@ -1,46 +1,65 @@
-import humidity from '../images/humidity.png'
-import barometer from '../images/barometer.png'
-import windSpeed from '../images/windSpeed.png'
+import humidity from '../images/humidity.png';
+import barometer from '../images/barometer.png';
+import windSpeed from '../images/windSpeed.png';
+import getTempWindUnits from './tempWindUnits';
 
-function createLocationExtraInfoDiv(current) {
-    const locationExtraInfoDiv = document.createElement('div');
-    locationExtraInfoDiv.innerHTML = `
-    <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${current.wind_kph} km/h</div>
-    <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity} %</div>
-    <div class="pressure"><img сlass='imgHumPresSpeed' src="${barometer}" alt="Pres" height="30px" width="30px">${current.pressure_mb} mBar</div>`;
-    locationExtraInfoDiv.className = 'locationExtraInfoDiv'
-    return locationExtraInfoDiv;
+function changeTemperatureUnit() {
+    if ( document.querySelector('.tempSettingUnit').textContent === 'Celsius') {
+        document.querySelector('.tempSettingUnit').textContent = 'Fahrenheit';
+        localStorage.temperatureUnit = 'f';
+    } else {
+        document.querySelector('.tempSettingUnit').textContent = 'Celsius';
+        localStorage.temperatureUnit = 'c';
+    }
 }
 
-function createLocationInfoDiv(current) {
-    const locationInfoDiv = document.createElement('div');
-    locationInfoDiv.innerHTML = `
-    <div class="locationIconDiv"><img class="sunrise" src="https:${current.condition.icon}" alt="sunrise" height="150px" width="150px"></div>
-    <div class="locationIconDescriptionDiv">${current.condition.text}</div>
-    <div class="localTempDiv">${current.temp_c}°</div>`;
-    locationInfoDiv.className = 'locationInfoDiv';
-    return locationInfoDiv;
-}
-
-function createLocationDiv(location) {
-    const locationDiv = document.createElement('div');
-    locationDiv.innerHTML = `
-    <div class="locationCaptionDiv">Your Location Now</div>
-    <div class="locationDescriptionDiv">${location.name}, ${location.country}</div>`
-    locationDiv.className = 'locationDiv';
-    return locationDiv
+function changeWindSpeedUnit() {
+    if (document.querySelector('.windSpeedSettingUnit').textContent === 'kph') {
+        document.querySelector('.windSpeedSettingUnit').textContent = 'mph';
+        localStorage.windSpeedUnit = 'mph';
+    } else {
+        document.querySelector('.windSpeedSettingUnit').textContent = 'kph';
+        localStorage.windSpeedUnit = 'kph';
+    }
 }
 
 function createPage(data) {
     const {current, location} = data;
-    const locationDiv = createLocationDiv(location);
-    const locationInfoDiv = createLocationInfoDiv(current);
-    const locationExtraInfoDiv = createLocationExtraInfoDiv(current);
+    const {temperatureUnit = 'c', windSpeedUnit = 'kph'} = localStorage;
+    const {tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest} = getTempWindUnits(temperatureUnit, windSpeedUnit, current);
+    document.querySelector('.settingPage').innerHTML = `
+    <div class="locationDiv">
+        <div class="locationCaptionDiv">Your Location Now</div>
+        <div class="locationDescriptionDiv">${location.name}, ${location.country}</div>
+    </div>
+    <div class="locationInfoDiv">
+        <div class="locationIconDiv"><img class="sunrise" src="https:${current.condition.icon}" alt="sunrise" height="150px" width="150px"></div>
+        <div class="locationIconDescriptionDiv">${current.condition.text}</div>
+        <div class="localTempDiv">${tempRequest}${tempSign}</div>
+    </div>
+    <div class="locationExtraInfoDiv">
+        <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${windSpeedRequest} ${windUnit}</div>
+        <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity} %</div>
+        <div class="pressure"><img сlass='imgHumPresSpeed' src="${barometer}" alt="Pres" height="30px" width="30px">${current.pressure_mb} mBar</div>
+    </div>
+    <div class="locationEditDiv">
+        <div class="tempSettingDiv">
+            <div class="tempSettingCaption">Temperature</div>
+            <div class="tempSettingUnit">${tempUnit}</div>
+        </div>
+        <div class="speedWindSettingDiv">
+            <div class="windSpeedSettingCaption">Wind Speed</div>
+            <div class="windSpeedSettingUnit">${windUnit}</div>
+        </div>
+        <div class="sourceSettingDiv">
+            <div class="sourceSettingCaption">Source</div>
+            <div class="sourceSettingUnit">weatherapi.com</div>
+        </div>
+    </div>`;
     console.log(current);
     console.log(location);
-    document.querySelector('.settingPage').append(locationDiv);
-    document.querySelector('.settingPage').append(locationInfoDiv);
-    document.querySelector('.settingPage').append(locationExtraInfoDiv);    
+    document.querySelector('.tempSettingUnit').addEventListener('click', changeTemperatureUnit);
+    document.querySelector('.windSpeedSettingUnit').addEventListener('click', changeWindSpeedUnit);
 }
 
 async function getData() {

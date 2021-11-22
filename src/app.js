@@ -45,6 +45,6 @@ controlMenu.addEventListener('click', ({target}) => {
     }
 });
 
-createSettingPage();
+// createSettingPage();
 // createfavouritePage();
-// createHomePage(url);
+createHomePage(url);

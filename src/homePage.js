@@ -3,36 +3,45 @@ import barometer from '../images/barometer.png'
 import windSpeed from '../images/windSpeed.png'
 import sunrise from '../images/sunrise.png'
 import sunset from '../images/sunset.png'
+import getTempWindUnits from './tempWindUnits'
 
-function createDivWithNextDaysInfo(day) {
+function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
     const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
     const divNextDay = document.createElement('div');
+    let maxTemp, minTemp;
+    if (tempUnit === 'Celsius') {
+        maxTemp = day.day.maxtemp_c;
+        minTemp = day.day.mintemp_c;
+    } else {
+        maxTemp = day.day.maxtemp_f;
+        minTemp = day.day.mintemp_f;
+    }
     divNextDay.className = 'nextDay';
     divNextDay.innerHTML = `
     <div class="nameNextDay">${nameDay}</div>
     <div class="iconNextDay"><img src="https:${day.day.condition.icon}"></div>
-    <div class="maxTempNextDay">${day.day.maxtemp_c}°</div>
-    <div class="minTempNextDay">${day.day.mintemp_c}°</div>`
+    <div class="maxTempNextDay">${maxTemp}${tempSign}</div>
+    <div class="minTempNextDay">${minTemp}${tempSign}</div>`
     return divNextDay;
 }
 
-function getDivWithCurrentInfo(location, current) {
+function getDivWithCurrentInfo(location, current, tempRequest, tempSign) {
     const divCurrentInfo = document.createElement('div');
     divCurrentInfo.className = 'currentInfo';
     divCurrentInfo.innerHTML = `
         <div class="city">${location.name}</div>
-        <div class="currentTemp">${current.temp_c}°<img src="https:${current.condition.icon}"></div>
+        <div class="currentTemp">${tempRequest}${tempSign}<img src="https:${current.condition.icon}"></div>
         <div class="currentCondition">${current.condition.text}</div>`
     return divCurrentInfo;
 }
  
-function getDivWithАdditionalInfo(current) {
+function getDivWithАdditionalInfo(current, windUnit, windSpeedRequest) {
     const divHumPresSpeed = document.createElement('div');
     divHumPresSpeed.className = 'humPresSpeed';
     divHumPresSpeed.innerHTML = `
     <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity} %</div>
     <div class="pressure"><img сlass='imgHumPresSpeed' src="${barometer}" alt="Pres" height="30px" width="30px">${current.pressure_mb} mBar</div>
-    <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${current.wind_kph} km/h</div>`;
+    <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${windSpeedRequest} ${windUnit}</div>`;
     return divHumPresSpeed;
 }
 
@@ -45,13 +54,19 @@ function getDivWithSunriseSunsetInfo(forecast) {
     return divSun;
 }
 
-function createDivWithTodayForecast(day)  {
+function createDivWithTodayForecast(day, tempUnit, tempSign)  {
     const divGroup = document.createElement('div');
+    let temp;
+    if (tempUnit === 'Celsius') {
+        temp = day.temp_c;
+    } else {
+        temp = day.temp_f;
+    }
     divGroup.className = 'timeGroup';
     divGroup.innerHTML = `
     <div class="time">${day.time.substr(-5)}</div>
     <div class="icon"><img src="https:${day.condition.icon}"></div>
-    <div class="time">${day.temp_c}°</div>`
+    <div class="time">${temp}${tempSign}</div>`
     return divGroup;
 }
 
@@ -68,14 +83,14 @@ function getFullNameWeekDay(numDay) {
     }
 }
 
-function getDivWithNextDaysForecast(forecast) {
+function getDivWithNextDaysForecast(forecast, tempSign, tempUnit) {
     const divNextDays = document.createElement('div');
     divNextDays.className = 'nextDays';
-    forecast.forecastday.slice(1).forEach(day => divNextDays.append(createDivWithNextDaysInfo(day)));
+    forecast.forecastday.slice(1).forEach(day => divNextDays.append(createDivWithNextDaysInfo(day, tempSign, tempUnit)));
     return divNextDays;
 }
 
-function getDivWithTodayForecats(forecast, current) {
+function getDivWithTodayForecats(forecast, current, tempUnit, tempSign) {
     const divTodayForecast = document.createElement('div');
     const divdayForecast = document.createElement('div');
     const currentTime = current.last_updated.slice(-5).split(':')[0];
@@ -84,21 +99,23 @@ function getDivWithTodayForecats(forecast, current) {
     divTodayForecast.className = 'today';
     divTodayForecast.innerHTML = `<div class="caption">Today</div>`;
 
-    arrTodayForecast.forEach((hour) => divdayForecast.append(createDivWithTodayForecast(hour)));
+    arrTodayForecast.forEach((hour) => divdayForecast.append(createDivWithTodayForecast(hour, tempUnit, tempSign)));
     divTodayForecast.append(divdayForecast);
     return divTodayForecast;
 }
 
 function createPage(data) {
     const {location, current, forecast} = data;
+    const {temperatureUnit = 'c', windSpeedUnit = 'kph'} = localStorage;
+    const {tempRequest, tempSign, tempUnit, windUnit, windSpeedRequest} = getTempWindUnits(temperatureUnit, windSpeedUnit, current, forecast);
     const divInformer = document.createElement('div');
     divInformer.className = 'informer';
 
-    const divCurrentInfo = getDivWithCurrentInfo(location, current);
-    const divHumPresSpeed = getDivWithАdditionalInfo(current);
+    const divCurrentInfo = getDivWithCurrentInfo(location, current, tempRequest, tempSign);
+    const divHumPresSpeed = getDivWithАdditionalInfo(current, windUnit, windSpeedRequest);
     const divSun = getDivWithSunriseSunsetInfo(forecast);
-    const divTodayForecast = getDivWithTodayForecats(forecast, current);
-    const divNextDays = getDivWithNextDaysForecast(forecast);
+    const divTodayForecast = getDivWithTodayForecats(forecast, current, tempUnit, tempSign);
+    const divNextDays = getDivWithNextDaysForecast(forecast, tempSign, tempUnit);
     
     divInformer.append(divCurrentInfo);
     divInformer.append(divHumPresSpeed);
