@@ -2,6 +2,7 @@ import humidity from '../images/humidity.png';
 import barometer from '../images/barometer.png';
 import windSpeed from '../images/windSpeed.png';
 import getTempWindUnits from './tempWindUnits';
+import setColorControlButtons from './colorControlButtons';
 
 function changeTemperatureUnit() {
     if ( document.querySelector('.tempSettingUnit').textContent === 'Celsius') {
@@ -11,7 +12,6 @@ function changeTemperatureUnit() {
         document.querySelector('.tempSettingUnit').textContent = 'Celsius';
         localStorage.temperatureUnit = 'c';
     }
-    document.querySelector('.settingPage').remove();
     createSettingPage()
 }
 
@@ -23,7 +23,6 @@ function changeWindSpeedUnit() {
         document.querySelector('.windSpeedSettingUnit').textContent = 'kph';
         localStorage.windSpeedUnit = 'kph';
     }
-    document.querySelector('.settingPage').remove();
     createSettingPage()
 }
 
@@ -60,8 +59,6 @@ function createPage(data) {
             <div class="sourceSettingUnit">weatherapi.com</div>
         </div>
     </div>`;
-    console.log(current);
-    console.log(location);
     document.querySelector('.tempSettingUnit').addEventListener('click', changeTemperatureUnit);
     document.querySelector('.windSpeedSettingUnit').addEventListener('click', changeWindSpeedUnit);
 }
@@ -76,6 +73,8 @@ async function getData() {
 }
 
 function createSettingPage() {
+    document.querySelector('.app').firstChild.remove();
+    setColorControlButtons("#37515e", "#37515e", "#a37695");
     const divSettingPage = document.createElement('div');
     divSettingPage.className = 'settingPage'
     document.querySelector('.app').prepend(divSettingPage);

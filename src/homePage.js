@@ -4,6 +4,7 @@ import windSpeed from '../images/windSpeed.png'
 import sunrise from '../images/sunrise.png'
 import sunset from '../images/sunset.png'
 import getTempWindUnits from './tempWindUnits'
+import setColorControlButtons from './colorControlButtons'
 
 function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
     const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
@@ -133,7 +134,9 @@ function createPage(data) {
 }
 
 function createHomePage(url) {
-    
+    document.querySelector('.app').firstChild.remove();
+    setColorControlButtons("#37515e", "#a37695", "#37515e");
+
 /**
  * @param {string} url 
  * @returns {Promise} Promise

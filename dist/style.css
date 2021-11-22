@@ -171,7 +171,7 @@ body {
     text-align: center;
     border: 1px solid #356880; /* Параметры рамки */
     min-height: 25px;
-    width: 98%;
+    width: 96%;
 }
 
 .search {
@@ -192,6 +192,27 @@ body {
     height: 25px;
     border: none;
     background-color: inherit;
+}
+
+.similarCitiesDiv {
+    margin: 10px 0;
+    width: 96%;
+    align-self: center;
+    font-size: 1.2em;
+    background: #273844;
+}
+
+.citiesList {
+    padding: 0 5px;
+}
+
+.similarCityLi {
+    list-style-type: none;
+    padding: 5px 0;
+}
+
+.similarCityLi svg{
+    float: right;
 }
 
 /* styles for settingPage*/
