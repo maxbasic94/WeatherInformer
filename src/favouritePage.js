@@ -5,10 +5,10 @@ import getResponseData from './getResponse';
 import windSpeed from '../images/windSpeed.png';
 import humidity from '../images/humidity.png';
 import getTempWindUnits from './tempWindUnits';
+import createDomElement from './createDomElement';
 
 function createFavCityDiv(favCity) {
-   const favCityDiv = document.createElement('div');
-   favCityDiv.className = 'favCityDiv';
+   const favCityDiv = createDomElement('div', 'favCityDiv');
    favCity
       .then(data => {
          const {location, current} = data;
@@ -33,9 +33,8 @@ function createFavCityDiv(favCity) {
 }
 
 function createDivFavouriteCities() {
-   const divFavouriteCities = document.createElement('div');
+   const divFavouriteCities = createDomElement('div', 'favouriteCities');
    const favCityNamesArray = JSON.parse(localStorage.getItem("favouriteCitiesArr"));
-   divFavouriteCities.className = 'favouriteCities';
    if (favCityNamesArray.length > 0) {
       favCityNamesArray.forEach(favCity => {
          divFavouriteCities.append(createFavCityDiv( getResponseData(`http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${favCity}&days=4&aqi=no&alerts=no`)))
@@ -45,8 +44,7 @@ function createDivFavouriteCities() {
 }
 
 function createDivSearch() {
-   const divSearch = document.createElement('div');
-   divSearch.className = 'searchDiv';
+   const divSearch = createDomElement('div', 'searchDiv');
    divSearch.innerHTML = `
    <form class="searchForm">
          <input class="search" type="text" placeholder="Search">
@@ -78,10 +76,8 @@ function getStarColor(name) {
 function createCitiesList(citiesArr) {
    if (document.querySelector('.favouritePage').lastChild.className !== 'searchDiv') {document.querySelector('.favouritePage').lastChild.remove()}
    let favouriteCitiesArr = JSON.parse(localStorage.getItem("favouriteCitiesArr"));
-   const similarCitiesDiv = document.createElement('div');
-   const citiesList = document.createElement('ul');
-   similarCitiesDiv.className = 'similarCitiesDiv';
-   citiesList.className = 'citiesList';
+   const similarCitiesDiv = createDomElement('div', 'similarCitiesDiv');
+   const citiesList = createDomElement('ul', 'citiesList');
    citiesArr.slice(0, 5).forEach((item, index) => {
       const {name, country_name} = item;
       let starColor = getStarColor(name);
@@ -129,11 +125,10 @@ function createfavouritePage() {
    }
    document.querySelector('.app').firstChild.remove();
    setColorControlButtons("#a37695", "#37515e", "#37515e");
-   const divFavouritePage = document.createElement('div');
+   const divFavouritePage = createDomElement('div', 'favouritePage');
    const divSearch = createDivSearch();
    const divFavouriteCities = createDivFavouriteCities();
 
-   divFavouritePage.className = 'favouritePage'
    divFavouritePage.append(divSearch);
    divFavouritePage.append(divFavouriteCities);
 

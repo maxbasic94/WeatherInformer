@@ -4,6 +4,8 @@ import windSpeed from '../images/windSpeed.png';
 import getTempWindUnits from './tempWindUnits';
 import setColorControlButtons from './colorControlButtons';
 import getResponseData from './getResponse';
+import createDomElement from './createDomElement';
+
 
 function changeTemperatureUnit() {
     if ( document.querySelector('.tempSettingUnit').textContent === 'Celsius') {
@@ -67,8 +69,7 @@ function createPage(data) {
 function createSettingPage() {
     document.querySelector('.app').firstChild.remove();
     setColorControlButtons("#37515e", "#37515e", "#a37695");
-    const divSettingPage = document.createElement('div');
-    divSettingPage.className = 'settingPage'
+    const divSettingPage = createDomElement('div', 'settingPage');
     document.querySelector('.app').prepend(divSettingPage);
     let data = getResponseData('http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=auto:ip&days=4&aqi=no&alerts=no');
     data
