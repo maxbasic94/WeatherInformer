@@ -169,7 +169,7 @@ body {
     align-self: center;
     margin-top: 10px;
     text-align: center;
-    border: 1px solid #356880; /* Параметры рамки */
+    border: 1px solid #356880;
     min-height: 25px;
     width: 96%;
 }
@@ -213,6 +213,47 @@ body {
 
 .similarCityLi svg{
     float: right;
+}
+
+.favouriteCities {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-height: 573px;
+    overflow-y: auto;
+}
+
+.favouriteCities::-webkit-scrollbar {
+    width: 0;
+}
+
+.favCityDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #273844;
+    width: 47%;
+    align-self: center;
+    margin: 5px 5px;
+}
+
+.favCityTempDiv {
+    font-size: 1.5em;
+}
+
+.favCityTempDiv img {
+    vertical-align: middle;
+    padding-bottom: 5px;
+}
+
+.favCountryLocDiv {
+    color: #93a3b7;
+}
+
+.favCityExtraInfoDiv {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 /* styles for settingPage*/

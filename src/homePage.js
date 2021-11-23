@@ -5,6 +5,7 @@ import sunrise from '../images/sunrise.png'
 import sunset from '../images/sunset.png'
 import getTempWindUnits from './tempWindUnits'
 import setColorControlButtons from './colorControlButtons'
+import getResponseData from './getResponse'
 
 function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
     const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
@@ -136,22 +137,8 @@ function createPage(data) {
 function createHomePage(url) {
     document.querySelector('.app').firstChild.remove();
     setColorControlButtons("#37515e", "#a37695", "#37515e");
-
-/**
- * @param {string} url 
- * @returns {Promise} Promise
- */
-
-    async function getData(url) {
-        const response = await fetch(url, {mode: 'cors'});
-        if (response.status == 200) {
-            const json = await response.json();
-            return json;
-        }
-        throw new Error(response.status);
-    }
     
-    getData(url)
+    getResponseData(url)
         .then(data => createPage(data))
         .catch(alert);
 }

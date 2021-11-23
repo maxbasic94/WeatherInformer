@@ -3,6 +3,7 @@ import barometer from '../images/barometer.png';
 import windSpeed from '../images/windSpeed.png';
 import getTempWindUnits from './tempWindUnits';
 import setColorControlButtons from './colorControlButtons';
+import getResponseData from './getResponse';
 
 function changeTemperatureUnit() {
     if ( document.querySelector('.tempSettingUnit').textContent === 'Celsius') {
@@ -63,22 +64,13 @@ function createPage(data) {
     document.querySelector('.windSpeedSettingUnit').addEventListener('click', changeWindSpeedUnit);
 }
 
-async function getData() {
-    const response = await fetch('http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=auto:ip&days=4&aqi=no&alerts=no', {mode: 'cors'});
-    if (response.status == 200) {
-        const json = await response.json();
-        return json;
-    }
-    throw new Error(response.status);
-}
-
 function createSettingPage() {
     document.querySelector('.app').firstChild.remove();
     setColorControlButtons("#37515e", "#37515e", "#a37695");
     const divSettingPage = document.createElement('div');
     divSettingPage.className = 'settingPage'
     document.querySelector('.app').prepend(divSettingPage);
-    let data = getData();
+    let data = getResponseData('http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=auto:ip&days=4&aqi=no&alerts=no');
     data
         .then(data => createPage(data))
         .catch(alert);
