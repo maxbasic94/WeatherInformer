@@ -1,3 +1,10 @@
+/**
+ * 
+ * @param {string} temp 
+ * @param {string} wind 
+ * @param {Object} current 
+ * @returns {Object} units
+ */
 function getTempWindUnits (temp, wind, current) {
     let units = {};
     if (temp === 'c') {

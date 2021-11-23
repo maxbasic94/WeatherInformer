@@ -7,6 +7,11 @@ import humidity from '../images/humidity.png';
 import getTempWindUnits from './tempWindUnits';
 import createDomElement from './createDomElement';
 
+/**
+ * 
+ * @param {promise} favCity 
+ * @returns {div} favCityDiv
+ */
 function createFavCityDiv(favCity) {
    const favCityDiv = createDomElement('div', 'favCityDiv');
    favCity
@@ -32,6 +37,10 @@ function createFavCityDiv(favCity) {
    return favCityDiv;
 }
 
+/**
+ * 
+ * @returns {div} divFavouriteCities
+ */
 function createDivFavouriteCities() {
    const divFavouriteCities = createDomElement('div', 'favouriteCities');
    const favCityNamesArray = JSON.parse(localStorage.getItem("favouriteCitiesArr"));
@@ -43,6 +52,10 @@ function createDivFavouriteCities() {
    return divFavouriteCities;
 }
 
+/**
+ * 
+ * @returns {div} divSearch
+ */
 function createDivSearch() {
    const divSearch = createDomElement('div', 'searchDiv');
    divSearch.innerHTML = `
@@ -54,6 +67,11 @@ function createDivSearch() {
    return divSearch;   
 }
 
+/**
+ * 
+ * @param {string} searchCity 
+ * @returns {string} city list
+ */
 async function getSimilarCities(searchCity) {
    const response = await fetch(`https://autocomplete.travelpayouts.com/places2?term=${searchCity}&locale=en&types[]=city&callback=json`, {mode: 'cors'});
    if (response.status == 200) {
@@ -63,6 +81,11 @@ async function getSimilarCities(searchCity) {
    throw new Error(response.status);
 }
 
+/**
+ * 
+ * @param {string} name 
+ * @returns {string} color
+ */
 function getStarColor(name) {
    const cityNamesArray = JSON.parse(localStorage.getItem("favouriteCitiesArr"));
    if(!cityNamesArray || cityNamesArray.length === 0) {return 'white'}
@@ -73,6 +96,10 @@ function getStarColor(name) {
    }
 }
 
+/**
+ * 
+ * @param {Promise} citiesArr 
+ */
 function createCitiesList(citiesArr) {
    if (document.querySelector('.favouritePage').lastChild.className !== 'searchDiv') {document.querySelector('.favouritePage').lastChild.remove()}
    let favouriteCitiesArr = JSON.parse(localStorage.getItem("favouriteCitiesArr"));

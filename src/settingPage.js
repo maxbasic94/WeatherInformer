@@ -29,6 +29,10 @@ function changeWindSpeedUnit() {
     createSettingPage()
 }
 
+/**
+ * 
+ * @param {Object} data 
+ */
 function createPage(data) {
     const {current, location} = data;
     const {temperatureUnit = 'c', windSpeedUnit = 'kph'} = localStorage;

@@ -8,6 +8,13 @@ import setColorControlButtons from './colorControlButtons'
 import getResponseData from './getResponse'
 import createDomElement from './createDomElement'
 
+/**
+ * 
+ * @param {Object} day 
+ * @param {string} tempSign 
+ * @param {string} tempUnit 
+ * @returns {div} divNextDay
+ */
 function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
     const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
     const divNextDay = createDomElement('div', 'nextDay');
@@ -27,6 +34,14 @@ function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
     return divNextDay;
 }
 
+/**
+ * 
+ * @param {Object} location 
+ * @param {Object} current 
+ * @param {string} tempRequest 
+ * @param {string} tempSign 
+ * @returns {div} divCurrentInfo
+ */
 function getDivWithCurrentInfo(location, current, tempRequest, tempSign) {
     const divCurrentInfo = createDomElement('div', 'currentInfo');
     divCurrentInfo.innerHTML = `
@@ -35,7 +50,14 @@ function getDivWithCurrentInfo(location, current, tempRequest, tempSign) {
         <div class="currentCondition">${current.condition.text}</div>`
     return divCurrentInfo;
 }
- 
+
+/**
+ * 
+ * @param {Object} current 
+ * @param {string} windUnit 
+ * @param {string} windSpeedRequest 
+ * @returns {div} divHumPresSpeed
+ */
 function getDivWithАdditionalInfo(current, windUnit, windSpeedRequest) {
     const divHumPresSpeed = createDomElement('div', 'humPresSpeed');
     divHumPresSpeed.innerHTML = `
@@ -45,6 +67,11 @@ function getDivWithАdditionalInfo(current, windUnit, windSpeedRequest) {
     return divHumPresSpeed;
 }
 
+/**
+ * 
+ * @param {Object} forecast 
+ * @returns {div} divSun
+ */
 function getDivWithSunriseSunsetInfo(forecast) {
     const divSun = createDomElement('div', 'sun');
     divSun.innerHTML = `
@@ -53,6 +80,13 @@ function getDivWithSunriseSunsetInfo(forecast) {
     return divSun;
 }
 
+/**
+ * 
+ * @param {Object} day 
+ * @param {string} tempUnit 
+ * @param {string} tempSign 
+ * @returns {div} divGroup
+ */
 function createDivWithTodayForecast(day, tempUnit, tempSign)  {
     const divGroup = createDomElement('div', 'timeGroup');
     let temp;
@@ -68,6 +102,11 @@ function createDivWithTodayForecast(day, tempUnit, tempSign)  {
     return divGroup;
 }
 
+/**
+ * 
+ * @param {number} numDay 
+ * @returns {string} day of week
+ */
 function getFullNameWeekDay(numDay) {
     switch (numDay) {
         case 0: return 'Sunday';
@@ -81,12 +120,27 @@ function getFullNameWeekDay(numDay) {
     }
 }
 
+/**
+ * 
+ * @param {Object} forecast 
+ * @param {string} tempSign 
+ * @param {string} tempUnit 
+ * @returns {div} divNextDays
+ */
 function getDivWithNextDaysForecast(forecast, tempSign, tempUnit) {
     const divNextDays = createDomElement('div', 'nextDays');
     forecast.forecastday.slice(1).forEach(day => divNextDays.append(createDivWithNextDaysInfo(day, tempSign, tempUnit)));
     return divNextDays;
 }
 
+/**
+ * 
+ * @param {Object} forecast 
+ * @param {Object} current 
+ * @param {string} tempUnit 
+ * @param {string} tempSign 
+ * @returns {div} divTodayForecast
+ */
 function getDivWithTodayForecats(forecast, current, tempUnit, tempSign) {
     const divTodayForecast = createDomElement('div', 'today');
     const divdayForecast = createDomElement('div', 'dayForecast');
@@ -99,6 +153,10 @@ function getDivWithTodayForecats(forecast, current, tempUnit, tempSign) {
     return divTodayForecast;
 }
 
+/**
+ * 
+ * @param {Object} data 
+ */
 function createPage(data) {
     const {location, current, forecast} = data;
     const {temperatureUnit = 'c', windSpeedUnit = 'kph'} = localStorage;
@@ -126,6 +184,10 @@ function createPage(data) {
     }, false);
 }
 
+/**
+ * 
+ * @param {string} url 
+ */
 function createHomePage(url) {
     document.querySelector('.app').firstChild.remove();
     setColorControlButtons("#37515e", "#a37695", "#37515e");
