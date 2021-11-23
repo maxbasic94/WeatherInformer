@@ -9,7 +9,7 @@ Link on the document: https://docs.google.com/document/d/1GLfIU93NLco1XkdUXnje-k
 
 ## How to use
 
-When you start the application, it will show you the weather in the city in which you are now \ 
+When you start the application, it will show you the weather in the city in which you are now\
 On "Home page" you can see:
 * Current city
 * Temperature
