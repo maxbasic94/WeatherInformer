@@ -19,7 +19,7 @@ On "Home page" you can see:
 * Pressure
 * Wind speed
 * Sunrise and sunset times
-* Today and next 2 days forecast \
+* Today and next 2 days forecast 
 
 For change temperature or wind speed units go to "Setting page" \
 On "Home page" you can see:
@@ -30,11 +30,11 @@ On "Home page" you can see:
 * Wind speed
 * Humidity
 * Pressure
-* Temperature and wind speed units settings \
+* Temperature and wind speed units settings 
 
 For change temperature unit on "Fahrenheit" click on inscription "Celsius" \
 For change temperature unit on "Celsius" click on inscription "Fahrenheit" \
 For change wind speed unit on "mph" click on inscription "kph" \
-For change wind speed unit on "kph" click on inscription "mph" \
+For change wind speed unit on "kph" click on inscription "mph" 
 
 ## Folders structure
