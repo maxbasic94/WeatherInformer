@@ -37,8 +37,13 @@ On "Setting page" you can see:
 For change temperature unit on "Fahrenheit" click on inscription "Celsius" \
 For change temperature unit on "Celsius" click on inscription "Fahrenheit" \
 For change wind speed unit on "mph" click on inscription "kph" \
-For change wind speed unit on "kph" click on inscription "mph" \ 
+For change wind speed unit on "kph" click on inscription "mph" 
 
 #### Favourite page
+On "Favourite page" you can see:
+* Input for finding the city you need
+* Your favourite cities
+
+For search city enter the name of the city in the input field
 
 ## Folders structure
