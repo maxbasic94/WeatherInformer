@@ -44,7 +44,7 @@ On "Favourite page" you can see:
 * Input for finding the city you need
 * Your favourite cities
 
-For search city enter the name of the city in the input field. \
+For search city enter the name of the city in the input field and click enter or search icon. \
 After that you will see cities matching the name. \
 Click on City for see more information about weather in it city \
 Click on City in search list for see more information about weather in it city \
