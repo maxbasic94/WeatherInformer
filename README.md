@@ -31,6 +31,7 @@ On "Home page" you can see:
 * Humidity
 * Pressure
 * Temperature and wind speed units settings \
+
 For change temperature unit on "Fahrenheit" click on inscription "Celsius" \
 For change temperature unit on "Celsius" click on inscription "Fahrenheit" \
 For change wind speed unit on "mph" click on inscription "kph" \
