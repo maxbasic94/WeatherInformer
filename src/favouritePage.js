@@ -182,7 +182,7 @@ function createCitiesList(citiesArr) {
 }
 
 function createfavouritePage() {
-  if (JSON.parse(localStorage.getItem("favouriteCitiesArr") === null)) {
+  if (localStorage.getItem("favouriteCitiesArr") === null) {
     localStorage.setItem("favouriteCitiesArr", JSON.stringify([]));
   }
   document.querySelector(".app").firstChild.remove();
