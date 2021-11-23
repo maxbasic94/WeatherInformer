@@ -9,8 +9,8 @@ Link on the document: https://docs.google.com/document/d/1GLfIU93NLco1XkdUXnje-k
 
 ## How to use
 
-When you start the application, it will show you the weather in the city in which you are now\
-On home page you can see:
+When you start the application, it will show you the weather in the city in which you are now \ 
+On "Home page" you can see:
 * Current city
 * Temperature
 * Condition
@@ -19,6 +19,21 @@ On home page you can see:
 * Pressure
 * Wind speed
 * Sunrise and sunset times
-* Today and next 2 days forecast
+* Today and next 2 days forecast \
+
+For change temperature or wind speed units go to "Setting page" \
+On "Home page" you can see:
+* Your current location
+* Condition
+* Condition's description
+* Temperature
+* Wind speed
+* Humidity
+* Pressure
+* Temperature and wind speed units settings \
+For change temperature unit on "Fahrenheit" click on inscription "Celsius" \
+For change temperature unit on "Celsius" click on inscription "Fahrenheit" \
+For change wind speed unit on "mph" click on inscription "kph" \
+For change wind speed unit on "kph" click on inscription "mph" \
 
 ## Folders structure
