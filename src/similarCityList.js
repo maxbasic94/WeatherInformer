@@ -54,10 +54,10 @@ function createCityLi(index, name, country_name, starColor) {
  */
 function createCitiesList(citiesArr) {
   window.location.hash = "#List";
-  if (
-    document.querySelector(".favouritePage").lastChild.className !== "searchDiv"
-  ) {
-    document.querySelector(".favouritePage").lastChild.remove();
+  const lastChildFavouritePage =
+    document.querySelector(".favouritePage").lastChild;
+  if (lastChildFavouritePage.className !== "searchDiv") {
+    lastChildFavouritePage.remove();
   }
   let favouriteCitiesArr = JSON.parse(
     localStorage.getItem("favouriteCitiesArr")
