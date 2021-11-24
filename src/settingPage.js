@@ -14,7 +14,6 @@ function changeTemperatureUnit() {
     document.querySelector(".tempSettingUnit").textContent = "Celsius";
     localStorage.temperatureUnit = "c";
   }
-  createSettingPage();
 }
 
 function changeWindSpeedUnit() {
@@ -25,7 +24,6 @@ function changeWindSpeedUnit() {
     document.querySelector(".windSpeedSettingUnit").textContent = "kph";
     localStorage.windSpeedUnit = "kph";
   }
-  createSettingPage();
 }
 
 /**
@@ -55,11 +53,11 @@ function createPage(data) {
     <div class="locationEditDiv">
         <div class="tempSettingDiv">
             <div class="tempSettingCaption">Temperature</div>
-            <div class="tempSettingUnit">${tempUnit}</div>
+            <div class="tempSettingUnit"><a href="#${tempUnit}">${tempUnit}</a></div>
         </div>
         <div class="speedWindSettingDiv">
             <div class="windSpeedSettingCaption">Wind Speed</div>
-            <div class="windSpeedSettingUnit">${windUnit}</div>
+            <div class="windSpeedSettingUnit"><a href="#${windUnit}">${windUnit}</a></div>
         </div>
         <div class="sourceSettingDiv">
             <div class="sourceSettingCaption">Source</div>
@@ -75,7 +73,6 @@ function createPage(data) {
 }
 
 function createSettingPage() {
-  document.querySelector(".app").firstChild.remove();
   setColorControlButtons("#37515e", "#37515e", "#a37695");
   const divSettingPage = createDomElement("div", "settingPage");
   document.querySelector(".app").prepend(divSettingPage);

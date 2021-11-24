@@ -225,7 +225,6 @@ function createPage(data) {
  * @param {string} url
  */
 function createHomePage(url) {
-  document.querySelector(".app").firstChild.remove();
   setColorControlButtons("#37515e", "#a37695", "#37515e");
 
   getResponseData(url)

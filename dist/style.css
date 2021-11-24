@@ -329,9 +329,11 @@ body {
     padding: 0 10% 0 10%;
 }
 
-.tempSettingUnit, .windSpeedSettingUnit, .sourceSettingUnit {
+.tempSettingUnit, .windSpeedSettingUnit, .sourceSettingUnit,
+.tempSettingUnit a, .windSpeedSettingUnit a {
     color: #356880;
     cursor: pointer;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 600px) {
