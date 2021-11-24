@@ -2,9 +2,14 @@ import humidity from "../images/humidity.png";
 import barometer from "../images/barometer.png";
 import windSpeed from "../images/windSpeed.png";
 import getTempWindUnits from "./tempWindUnits";
-import setColorControlButtons from "./colorControlButtons";
 import getResponseData from "./getResponse";
 import createDomElement from "./createDomElement";
+
+function replaseSettingPage() {
+  const newSettingPage = createSettingPage();
+  document.querySelector('.app').innerHTML = '';
+  document.querySelector('.app').append(newSettingPage);
+}
 
 function changeTemperatureUnit() {
   if (document.querySelector(".tempSettingUnit").textContent === "Celsius") {
@@ -14,6 +19,7 @@ function changeTemperatureUnit() {
     document.querySelector(".tempSettingUnit").textContent = "Celsius";
     localStorage.temperatureUnit = "c";
   }
+  replaseSettingPage();
 }
 
 function changeWindSpeedUnit() {
@@ -24,18 +30,19 @@ function changeWindSpeedUnit() {
     document.querySelector(".windSpeedSettingUnit").textContent = "kph";
     localStorage.windSpeedUnit = "kph";
   }
+  replaseSettingPage();
 }
 
 /**
  *
  * @param {Object} data
  */
-function createPage(data) {
+function createPage(data, divSettingPage) {
   const { current, location } = data;
   const { temperatureUnit = "c", windSpeedUnit = "kph" } = localStorage;
   const { tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest } =
     getTempWindUnits(temperatureUnit, windSpeedUnit, current);
-  document.querySelector(".settingPage").innerHTML = `
+  divSettingPage.innerHTML = `
     <div class="locationDiv">
         <div class="locationCaptionDiv">Your Location Now</div>
         <div class="locationDescriptionDiv">${location.name}, ${location.country}</div>
@@ -53,33 +60,32 @@ function createPage(data) {
     <div class="locationEditDiv">
         <div class="tempSettingDiv">
             <div class="tempSettingCaption">Temperature</div>
-            <div class="tempSettingUnit"><a href="#${tempUnit}">${tempUnit}</a></div>
+            <div class="tempSettingUnit">${tempUnit}</div>
         </div>
         <div class="speedWindSettingDiv">
             <div class="windSpeedSettingCaption">Wind Speed</div>
-            <div class="windSpeedSettingUnit"><a href="#${windUnit}">${windUnit}</a></div>
+            <div class="windSpeedSettingUnit">${windUnit}</div>
         </div>
         <div class="sourceSettingDiv">
             <div class="sourceSettingCaption">Source</div>
             <div class="sourceSettingUnit">weatherapi.com</div>
         </div>
     </div>`;
-  document
-    .querySelector(".tempSettingUnit")
-    .addEventListener("click", changeTemperatureUnit);
-  document
-    .querySelector(".windSpeedSettingUnit")
-    .addEventListener("click", changeWindSpeedUnit);
+    divSettingPage.addEventListener('click', ({target}) => {
+      if(target.className === 'tempSettingUnit') {changeTemperatureUnit()}
+      if(target.className === 'windSpeedSettingUnit') {changeWindSpeedUnit()}
+    })
 }
 
 function createSettingPage() {
-  setColorControlButtons("#37515e", "#37515e", "#a37695");
   const divSettingPage = createDomElement("div", "settingPage");
-  document.querySelector(".app").prepend(divSettingPage);
-  let data = getResponseData(
+  getResponseData(
     "http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=auto:ip&days=4&aqi=no&alerts=no"
-  );
-  data.then((data) => createPage(data)).catch(alert);
+  )
+    .then((data) => createPage(data, divSettingPage))
+    .catch(alert);
+  
+  return divSettingPage;
 }
 
 export default createSettingPage;

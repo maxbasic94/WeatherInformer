@@ -1,16 +1,33 @@
 const homeButton = document.querySelector("#homeButton");
 const favouriteButton = document.querySelector("#favouriteButton");
 const settingButton = document.querySelector("#settingButton");
+const activColor = '#a37695';
+const inactivColor = '#37515e';
 
 /**
- * @param {string} color1
- * @param {string} color2
- * @param {string} color3
+ * 
+ * @param {hash} hash 
  */
-function setColorControlButtons(color1, color2, color3) {
-  favouriteButton.setAttribute("fill", color1);
-  homeButton.setAttribute("fill", color2);
-  settingButton.setAttribute("fill", color3);
+function setColorControlButtons(hash) {
+  switch (hash) {
+    case '#home':
+      homeButton.setAttribute("fill", activColor);
+      favouriteButton.setAttribute("fill", inactivColor);
+      settingButton.setAttribute("fill", inactivColor);
+      break;
+    case '#favourite':
+      homeButton.setAttribute("fill", inactivColor);
+      favouriteButton.setAttribute("fill", activColor);
+      settingButton.setAttribute("fill", inactivColor);
+      break;
+    case '#setting':
+      homeButton.setAttribute("fill", inactivColor);
+      favouriteButton.setAttribute("fill", inactivColor);
+      settingButton.setAttribute("fill", activColor);
+      break;
+    default:
+      break;
+  }
 }
 
 export default setColorControlButtons;

@@ -53,7 +53,11 @@ function createCityLi(index, name, country_name, starColor) {
  * @param {Promise} citiesArr
  */
 function createCitiesList(citiesArr) {
-  window.location.hash = "#List";
+  if (
+    document.querySelector(".favouritePage").lastChild.className !== "searchDiv"
+  ) {
+    document.querySelector(".favouritePage").lastChild.remove();
+  }
   const lastChildFavouritePage =
     document.querySelector(".favouritePage").lastChild;
   if (lastChildFavouritePage.className !== "searchDiv") {
@@ -85,10 +89,10 @@ function createCitiesList(citiesArr) {
             favouriteCitiesArr.splice(index, 1);
           }
         }
-      } else {
-        localStorage.cityUrl = `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${cityName}&days=4&aqi=no&alerts=no`;
-        window.location.hash = "#city";
-      }
+      } //else {
+      //   localStorage.cityUrl = `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${cityName}&days=4&aqi=no&alerts=no`;
+      //   window.location.hash = "#home";
+      // }
       localStorage.setItem(
         "favouriteCitiesArr",
         JSON.stringify(favouriteCitiesArr)

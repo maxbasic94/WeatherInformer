@@ -1,5 +1,4 @@
 import searchImg from "../images/search.png";
-import setColorControlButtons from "./colorControlButtons";
 import getResponseData from "./getResponse";
 import windSpeed from "../images/windSpeed.png";
 import humidity from "../images/humidity.png";
@@ -31,11 +30,7 @@ function createFavCityDiv(favCity) {
          `;
     })
     .catch(alert);
-  favCityDiv.addEventListener("click", (event) => {
-    const cityName = event.currentTarget.childNodes[3].innerText;
-    localStorage.cityUrl = `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${cityName}&days=4&aqi=no&alerts=no`;
-    window.location.hash = "#city";
-  });
+  favCityDiv.addEventListener("click", () => {console.log('test')});
   return favCityDiv;
 }
 
@@ -72,8 +67,7 @@ function createDivSearch() {
    <form class="searchForm">
          <input class="search" type="text" placeholder="Search">
          <input class="submit" type="submit" value="" style="background: url(${searchImg}) no-repeat">
-   </form>
-   `;
+   </form>`;
   return divSearch;
 }
 
@@ -81,7 +75,6 @@ function createfavouritePage() {
   if (localStorage.getItem("favouriteCitiesArr") === null) {
     localStorage.setItem("favouriteCitiesArr", JSON.stringify([]));
   }
-  setColorControlButtons("#a37695", "#37515e", "#37515e");
   const divFavouritePage = createDomElement("div", "favouritePage");
   const divSearch = createDivSearch();
   const divFavouriteCities = createDivFavouriteCities();
@@ -89,10 +82,14 @@ function createfavouritePage() {
   divFavouritePage.append(divSearch);
   divFavouritePage.append(divFavouriteCities);
 
-  document.querySelector(".app").prepend(divFavouritePage);
-  document
-    .querySelector(".searchForm")
-    .addEventListener("input", (event) => createList(event));
+  divFavouritePage.querySelector(".searchForm").addEventListener("input", (event) => createList(event));
+  divFavouritePage.querySelector(".searchForm").addEventListener("submit", () => {
+    const newFavouriteCitiesDiv = createDivFavouriteCities();
+    document.querySelector('.favouritePage').lastChild.remove();
+    document.querySelector('.favouritePage').append(newFavouriteCitiesDiv);
+    divFavouritePage.querySelector(".search").value = '';
+  });
+  return divFavouritePage;
 }
 
 export default createfavouritePage;

@@ -4,7 +4,6 @@ import windSpeed from "../images/windSpeed.png";
 import sunrise from "../images/sunrise.png";
 import sunset from "../images/sunset.png";
 import getTempWindUnits from "./tempWindUnits";
-import setColorControlButtons from "./colorControlButtons";
 import getResponseData from "./getResponse";
 import createDomElement from "./createDomElement";
 
@@ -173,13 +172,13 @@ function getDivWithTodayForecats(forecast, current, tempUnit, tempSign) {
 /**
  *
  * @param {Object} data
+ * @param {div} divInformer
  */
-function createPage(data) {
+function createPage(data, divInformer) {
   const { location, current, forecast } = data;
   const { temperatureUnit = "c", windSpeedUnit = "kph" } = localStorage;
   const { tempRequest, tempSign, tempUnit, windUnit, windSpeedRequest } =
     getTempWindUnits(temperatureUnit, windSpeedUnit, current, forecast);
-  const divInformer = createDomElement("div", "informer");
 
   const divCurrentInfo = getDivWithCurrentInfo(
     location,
@@ -207,7 +206,6 @@ function createPage(data) {
   divInformer.append(divTodayForecast);
   divInformer.append(divNextDays);
 
-  document.querySelector(".app").prepend(divInformer);
   document.querySelector(".dayForecast").addEventListener(
     "mousewheel",
     (event) => {
@@ -225,11 +223,13 @@ function createPage(data) {
  * @param {string} url
  */
 function createHomePage(url) {
-  setColorControlButtons("#37515e", "#a37695", "#37515e");
+  const divInformer = createDomElement("div", "informer");
 
   getResponseData(url)
-    .then((data) => createPage(data))
+    .then((data) => createPage(data, divInformer))
     .catch(alert);
+
+  return divInformer;
 }
 
 export default createHomePage;
