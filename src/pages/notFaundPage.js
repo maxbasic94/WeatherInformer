@@ -1,4 +1,4 @@
-import createDomElement from "./createDomElement";
+import createDomElement from "../createDomElement";
 
 function createNotFaundPageDiv() {
     const notFaundPageDiv = createDomElement('div', 'notFaundDiv');

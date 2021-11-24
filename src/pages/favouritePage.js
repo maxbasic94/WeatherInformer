@@ -1,10 +1,10 @@
-import searchImg from "../images/search.png";
-import getResponseData from "./getResponse";
-import windSpeed from "../images/windSpeed.png";
-import humidity from "../images/humidity.png";
-import getTempWindUnits from "./tempWindUnits";
-import createDomElement from "./createDomElement";
-import createList from "./similarCityList";
+import searchImg from "../../images/search.png";
+import getResponseData from "../getResponse";
+import windSpeed from "../../images/windSpeed.png";
+import humidity from "../../images/humidity.png";
+import getTempWindUnits from "../tempWindUnits";
+import createDomElement from "../createDomElement";
+import createList from "../similarCityList";
 
 /**
  *
@@ -30,7 +30,7 @@ function createFavCityDiv(favCity) {
          `;
     })
     .catch(alert);
-  favCityDiv.addEventListener("click", () => {console.log('test')});
+  // favCityDiv.addEventListener("click", () => {console.log('test')});
   return favCityDiv;
 }
 

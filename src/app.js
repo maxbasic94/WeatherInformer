@@ -1,6 +1,6 @@
-import createHomePage from "./homePage";
-import createfavouritePage from "./favouritePage";
-import createSettingPage from "./settingPage";
+import createHomePage from "./pages/homePage";
+import createfavouritePage from "./pages/favouritePage";
+import createSettingPage from "./pages/settingPage";
 import setColorControlButtons from "./colorControlButtons"
 // import createNotFaundPageDiv from "./notFaundPage";
 
