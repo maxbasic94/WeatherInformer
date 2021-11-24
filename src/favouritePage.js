@@ -81,7 +81,6 @@ function createfavouritePage() {
   if (localStorage.getItem("favouriteCitiesArr") === null) {
     localStorage.setItem("favouriteCitiesArr", JSON.stringify([]));
   }
-  // document.querySelector(".app").firstChild.remove();
   setColorControlButtons("#a37695", "#37515e", "#37515e");
   const divFavouritePage = createDomElement("div", "favouritePage");
   const divSearch = createDivSearch();
