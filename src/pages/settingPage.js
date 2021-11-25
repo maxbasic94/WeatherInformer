@@ -77,6 +77,10 @@ function createPage(data, divSettingPage) {
     })
 }
 
+/**
+ * 
+ * @returns {<div>} setting page 
+ */
 function createSettingPage() {
   const divSettingPage = createDomElement("div", "settingPage");
   getResponseData(

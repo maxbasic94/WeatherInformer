@@ -71,6 +71,10 @@ function createDivSearch() {
   return divSearch;
 }
 
+/**
+ * 
+ * @returns {<div>} favourite page
+ */
 function createfavouritePage() {
   if (localStorage.getItem("favouriteCitiesArr") === null) {
     localStorage.setItem("favouriteCitiesArr", JSON.stringify([]));

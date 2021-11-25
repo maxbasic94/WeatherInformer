@@ -221,6 +221,7 @@ function createPage(data, divInformer) {
 /**
  *
  * @param {string} url
+ * @returns {<div>} home page
  */
 function createHomePage(url) {
   const divInformer = createDomElement("div", "informer");
