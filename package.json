@@ -9,7 +9,8 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.jsx?$": "babel-jest"
+      "^.+\\.jsx?$": "babel-jest",
+      ".+\\.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
     }
   },
   "repository": {
@@ -28,6 +29,7 @@
     "eslint": "^8.2.0",
     "file-loader": "^6.2.0",
     "jest": "^27.3.1",
+    "jest-transform-stub": "^2.0.0",
     "webpack": "^5.64.0",
     "webpack-cli": "^4.9.1"
   }
