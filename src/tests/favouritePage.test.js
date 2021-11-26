@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import "regenerator-runtime/runtime";
-import createfavouritePage from '../pages/favouritePage'
+import createfavouritePage from "../pages/favouritePage";
 window.alert = jest.fn();
 
 test("homePage has className = `informer`", () => {
