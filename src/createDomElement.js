@@ -1,7 +1,7 @@
 /**
- * @param {Node} elem
+ * @param {string} elem
  * @param {string} className
- * @returns DOM element
+ * @returns {HTMLElement}
  */
 function createDomElement(elem, className) {
   const element = document.createElement(elem);

@@ -20,7 +20,7 @@ function getStarColor(name) {
 /**
  *
  * @param {event} event
- * @returns {<svg>} DOM_Node
+ * @returns {HTMLElement} DOM_Node
  */
 function getSvgStar(event) {
   if (event.target.tagName === "path") {
@@ -36,7 +36,7 @@ function getSvgStar(event) {
  * @param {string} name
  * @param {string} country_name
  * @param {string} starColor
- * @returns {li} similar cities list item
+ * @returns {HTMLLIElement} similar cities list item
  */
 function createCityLi(index, name, country_name, starColor) {
   const li = document.createElement("li");
@@ -106,7 +106,7 @@ function createCitiesList(citiesArr) {
 /**
  *
  * @param {string} searchCity
- * @returns {string} city list
+ * @returns {Promise} city list
  */
 async function getSimilarCities(searchCity) {
   const response = await fetch(

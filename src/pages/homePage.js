@@ -12,7 +12,7 @@ import createDomElement from "../createDomElement";
  * @param {Object} day
  * @param {string} tempSign
  * @param {string} tempUnit
- * @returns {div} divNextDay
+ * @returns {HTMLDivElement} divNextDay
  */
 function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
   const nameDay = getFullNameWeekDay(new Date(day.date).getDay());
@@ -39,7 +39,7 @@ function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
  * @param {Object} current
  * @param {string} tempRequest
  * @param {string} tempSign
- * @returns {div} divCurrentInfo
+ * @returns {HTMLDivElement} divCurrentInfo
  */
 function getDivWithCurrentInfo(location, current, tempRequest, tempSign) {
   const divCurrentInfo = createDomElement("div", "currentInfo");
@@ -55,7 +55,7 @@ function getDivWithCurrentInfo(location, current, tempRequest, tempSign) {
  * @param {Object} current
  * @param {string} windUnit
  * @param {string} windSpeedRequest
- * @returns {div} divHumPresSpeed
+ * @returns {HTMLDivElement} divHumPresSpeed
  */
 function getDivWithАdditionalInfo(current, windUnit, windSpeedRequest) {
   const divHumPresSpeed = createDomElement("div", "humPresSpeed");
@@ -69,7 +69,7 @@ function getDivWithАdditionalInfo(current, windUnit, windSpeedRequest) {
 /**
  *
  * @param {Object} forecast
- * @returns {div} divSun
+ * @returns {HTMLDivElement} divSun
  */
 function getDivWithSunriseSunsetInfo(forecast) {
   const divSun = createDomElement("div", "sun");
@@ -84,7 +84,7 @@ function getDivWithSunriseSunsetInfo(forecast) {
  * @param {Object} day
  * @param {string} tempUnit
  * @param {string} tempSign
- * @returns {div} divGroup
+ * @returns {HTMLDivElement} divGroup
  */
 function createDivWithTodayForecast(day, tempUnit, tempSign) {
   const divGroup = createDomElement("div", "timeGroup");
@@ -132,7 +132,7 @@ function getFullNameWeekDay(numDay) {
  * @param {Object} forecast
  * @param {string} tempSign
  * @param {string} tempUnit
- * @returns {div} divNextDays
+ * @returns {HTMLDivElement} divNextDays
  */
 function getDivWithNextDaysForecast(forecast, tempSign, tempUnit) {
   const divNextDays = createDomElement("div", "nextDays");
@@ -150,7 +150,7 @@ function getDivWithNextDaysForecast(forecast, tempSign, tempUnit) {
  * @param {Object} current
  * @param {string} tempUnit
  * @param {string} tempSign
- * @returns {div} divTodayForecast
+ * @returns {HTMLDivElement} divTodayForecast
  */
 function getDivWithTodayForecats(forecast, current, tempUnit, tempSign) {
   const divTodayForecast = createDomElement("div", "today");
@@ -172,7 +172,7 @@ function getDivWithTodayForecats(forecast, current, tempUnit, tempSign) {
 /**
  *
  * @param {Object} data
- * @param {div} divInformer
+ * @param {HTMLDivElement} divInformer
  */
 function createPage(data, divInformer) {
   const { location, current, forecast } = data;
@@ -221,7 +221,7 @@ function createPage(data, divInformer) {
 /**
  *
  * @param {string} url
- * @returns {<div>} home page
+ * @returns {HTMLDivElement} home page
  */
 function createHomePage(url) {
   const divInformer = createDomElement("div", "informer");

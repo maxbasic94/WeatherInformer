@@ -79,7 +79,7 @@ function createPage(data, divSettingPage) {
 
 /**
  * 
- * @returns {<div>} setting page 
+ * @returns {HTMLDivElement} setting page 
  */
 function createSettingPage() {
   const divSettingPage = createDomElement("div", "settingPage");

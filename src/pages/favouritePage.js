@@ -9,7 +9,7 @@ import createList from "../similarCityList";
 /**
  *
  * @param {promise} favCity
- * @returns {div} favCityDiv
+ * @returns {HTMLDivElement} favCityDiv
  */
 function createFavCityDiv(favCity) {
   const favCityDiv = createDomElement("div", "favCityDiv");
@@ -36,7 +36,7 @@ function createFavCityDiv(favCity) {
 
 /**
  *
- * @returns {div} divFavouriteCities
+ * @returns {HTMLDivElement} divFavouriteCities
  */
 function createDivFavouriteCities() {
   const divFavouriteCities = createDomElement("div", "favouriteCities");
@@ -59,7 +59,7 @@ function createDivFavouriteCities() {
 
 /**
  *
- * @returns {div} divSearch
+ * @returns {HTMLDivElement} divSearch
  */
 function createDivSearch() {
   const divSearch = createDomElement("div", "searchDiv");
@@ -73,7 +73,7 @@ function createDivSearch() {
 
 /**
  * 
- * @returns {<div>} favourite page
+ * @returns {HTMLDivElement} favourite page
  */
 function createfavouritePage() {
   if (localStorage.getItem("favouriteCitiesArr") === null) {

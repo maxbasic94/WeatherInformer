@@ -2,7 +2,7 @@ import createDomElement from "../createDomElement";
 
 /**
  * 
- * @returns {<div>} notFound page
+ * @returns {HTMLDivElement} notFound page
  */
 function createNotFaundPageDiv() {
     const notFaundPageDiv = createDomElement('div', 'notFaundDiv');
