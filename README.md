@@ -49,7 +49,8 @@ After that you will see cities matching the name. \
 Click on star icon for add this city to favorite cities list
 
 ## Folders structure
-.
+    
+    .
     ├── dist                           # folder for project build
     ├── images                         # folder for contain images
     ├── node_modules
