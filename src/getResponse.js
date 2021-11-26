@@ -9,6 +9,9 @@ async function getResponseData(url) {
     const json = await response.json();
     return json;
   }
+  if (response.status == 404) {
+    window.location.hash = '#notFaund'
+  } 
   throw new Error(response.status);
 }
 
