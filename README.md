@@ -75,3 +75,14 @@ Click on star icon for add this city to favorite cities list
     ├── package.json
     ├── README.md
     └── webpack.config.js
+
+
+    
+    .
+    ├── build                   # Compiled files (alternatively `dist`)
+    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── tools                   # Tools and utilities
+    ├── LICENSE
+    └── README.md
