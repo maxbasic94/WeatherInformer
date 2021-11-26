@@ -44,10 +44,34 @@ On "Favourite page" you can see:
 * Input for finding the city you need
 * Your favourite cities
 
-For search city enter the name of the city in the input field and click enter or search icon. \
+For search city enter the name of the city in the input field. \
 After that you will see cities matching the name. \
-Click on City for see more information about weather in it city \
-Click on City in search list for see more information about weather in it city \
 Click on star icon for add this city to favorite cities list
 
 ## Folders structure
+.
+    ├── dist                           # folder for project build
+    ├── images                         # folder for contain images
+    ├── node_modules
+    ├── src                            # folder for contain source files
+    │   ├── pages
+    │   │   ├── favouritePage.js
+    │   │   ├── homePage.js
+    │   │   ├── notFoundPage.js
+    │   │   └── settingPage.js                       
+    │   ├── tests                      # folder for contain unit tests 
+    │   │   ├── homePage.test.js
+    │   │   └──
+    │   ├── app.js
+    │   ├── colorControlButtons.js
+    │   ├── createDomElement.js
+    │   ├── getResponse.js
+    │   ├── similarCityList.js
+    │   └── tempWindUnits.js                     
+    ├── .babelrc
+    ├── .eslintrc.js
+    ├── .gitignore
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    └── webpack.config.js
