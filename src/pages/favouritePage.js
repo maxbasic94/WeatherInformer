@@ -1,10 +1,10 @@
 import searchImg from "../../images/search.png";
-import getResponseData from "../getResponse";
+import getResponseData from "../utils/getResponse";
 import windSpeed from "../../images/windSpeed.png";
 import humidity from "../../images/humidity.png";
-import getTempWindUnits from "../tempWindUnits";
-import createDomElement from "../createDomElement";
-import createList from "../similarCityList";
+import getTempWindUnits from "../utils/tempWindUnits";
+import createDomElement from "../utils/createDomElement";
+import createList from "../utils/similarCityList";
 
 /**
  *

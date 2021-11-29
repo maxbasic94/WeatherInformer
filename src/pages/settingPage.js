@@ -1,9 +1,9 @@
 import humidity from "../../images/humidity.png";
 import barometer from "../../images/barometer.png";
 import windSpeed from "../../images/windSpeed.png";
-import getTempWindUnits from "../tempWindUnits";
-import getResponseData from "../getResponse";
-import createDomElement from "../createDomElement";
+import getTempWindUnits from "../utils/tempWindUnits";
+import getResponseData from "../utils/getResponse";
+import createDomElement from "../utils/createDomElement";
 
 function replaseSettingPage() {
   const newSettingPage = createSettingPage();

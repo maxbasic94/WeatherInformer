@@ -3,9 +3,9 @@ import barometer from "../../images/barometer.png";
 import windSpeed from "../../images/windSpeed.png";
 import sunrise from "../../images/sunrise.png";
 import sunset from "../../images/sunset.png";
-import getTempWindUnits from "../tempWindUnits";
-import getResponseData from "../getResponse";
-import createDomElement from "../createDomElement";
+import getTempWindUnits from "../utils/tempWindUnits";
+import getResponseData from "../utils/getResponse";
+import createDomElement from "../utils/createDomElement";
 
 /**
  *

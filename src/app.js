@@ -1,5 +1,5 @@
-import setColorControlButtons from "./colorControlButtons";
-import { homeDiv, favouriteDiv, settingDiv, notFaundPage, app } from "./router";
+import setColorControlButtons from "./utils/colorControlButtons";
+import { homeDiv, favouriteDiv, settingDiv, notFaundPage, app } from "./utils/router";
 
 const routes = {
   "#home": homeDiv,
