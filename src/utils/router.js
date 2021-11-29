@@ -11,6 +11,7 @@ const favouriteDiv = createfavouritePage();
 const settingDiv = createSettingPage();
 const notFaundPage = createNotFaundPageDiv();
 
+
 /**
  *
  * @param {Object} routes
@@ -22,4 +23,4 @@ function onRouteChanged(routes) {
 }
 
 export default onRouteChanged;
-export { homeDiv, favouriteDiv, settingDiv, notFaundPage, app };
+export { homeDiv, favouriteDiv, settingDiv, notFaundPage };

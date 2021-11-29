@@ -1,5 +1,5 @@
-import setColorControlButtons from "./utils/colorControlButtons";
-import { homeDiv, favouriteDiv, settingDiv, notFaundPage, app } from "./utils/router";
+import onRouteChanged from "./utils/router";
+import { homeDiv, favouriteDiv, settingDiv, notFaundPage } from './utils/router'
 
 const routes = {
   "#home": homeDiv,
@@ -8,13 +8,10 @@ const routes = {
   "#notFaund": notFaundPage,
 };
 
-function onRouteChanged() {
-  app.innerHTML = "";
-  app.append(routes[window.location.hash]);
-  setColorControlButtons(window.location.hash);
-}
-
 window.onload = () => {
   window.location.hash = "#home";
+  onRouteChanged(routes);
 };
-window.addEventListener("hashchange", onRouteChanged(routes));
+
+
+window.addEventListener("hashchange", () => onRouteChanged(routes));
