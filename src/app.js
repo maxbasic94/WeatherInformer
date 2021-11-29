@@ -1,5 +1,5 @@
 import setColorControlButtons from "./colorControlButtons";
-import { homeDiv, favouriteDiv, settingDiv, notFaundPage, app } from './router';
+import { homeDiv, favouriteDiv, settingDiv, notFaundPage, app } from "./router";
 
 const routes = {
   "#home": homeDiv,
@@ -16,5 +16,5 @@ function onRouteChanged() {
 
 window.onload = () => {
   window.location.hash = "#home";
-}
+};
 window.addEventListener("hashchange", onRouteChanged(routes));

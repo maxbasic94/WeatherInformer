@@ -12,8 +12,8 @@ const settingDiv = createSettingPage();
 const notFaundPage = createNotFaundPageDiv();
 
 /**
- * 
- * @param {Object} routes 
+ *
+ * @param {Object} routes
  */
 function onRouteChanged(routes) {
   app.innerHTML = "";
