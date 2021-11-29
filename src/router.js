@@ -11,6 +11,10 @@ const favouriteDiv = createfavouritePage();
 const settingDiv = createSettingPage();
 const notFaundPage = createNotFaundPageDiv();
 
+/**
+ * 
+ * @param {Object} routes 
+ */
 function onRouteChanged(routes) {
   app.innerHTML = "";
   app.append(routes[window.location.hash]);
