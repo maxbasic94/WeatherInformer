@@ -8,6 +8,23 @@ import getResponseData from "../utils/getResponse";
 import createDomElement from "../utils/createDomElement";
 
 /**
+ * 
+ * @param {string} nameDay 
+ * @param {number} maxTemp 
+ * @param {number} minTemp 
+ * @param {string} tempSign 
+ * @param {object} day 
+ * @returns {strinf} InnexHtml
+ */
+function insertContentToDivNextDay(nameDay, maxTemp, minTemp, tempSign, day) {
+  return `
+  <div class="nameNextDay">${nameDay}</div>
+  <div class="iconNextDay"><img src="https:${day.day.condition.icon}"></div>
+  <div class="maxTempNextDay">${maxTemp}${tempSign}</div>
+  <div class="minTempNextDay">${minTemp}${tempSign}</div>`
+}
+
+/**
  *
  * @param {Object} day
  * @param {string} tempSign
@@ -25,11 +42,7 @@ function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
     maxTemp = day.day.maxtemp_f;
     minTemp = day.day.mintemp_f;
   }
-  divNextDay.innerHTML = `
-    <div class="nameNextDay">${nameDay}</div>
-    <div class="iconNextDay"><img src="https:${day.day.condition.icon}"></div>
-    <div class="maxTempNextDay">${maxTemp}${tempSign}</div>
-    <div class="minTempNextDay">${minTemp}${tempSign}</div>`;
+  divNextDay.innerHTML = insertContentToDivNextDay(nameDay, maxTemp, minTemp, tempSign, day);
   return divNextDay;
 }
 
@@ -80,6 +93,20 @@ function getDivWithSunriseSunsetInfo(forecast) {
 }
 
 /**
+ * 
+ * @param {number} temp 
+ * @param {string} tempSign 
+ * @param {object} day 
+ * @returns {string} innerHTML
+ */
+function insertContetnToDivTimeGroup(temp, tempSign, day) {
+  return `
+  <div class="time">${day.time.substr(-5)}</div>
+  <div class="icon"><img src="https:${day.condition.icon}"></div>
+  <div class="time">${temp}${tempSign}</div>`;
+}
+
+/**
  *
  * @param {Object} day
  * @param {string} tempUnit
@@ -94,10 +121,7 @@ function createDivWithTodayForecast(day, tempUnit, tempSign) {
   } else {
     temp = day.temp_f;
   }
-  divGroup.innerHTML = `
-    <div class="time">${day.time.substr(-5)}</div>
-    <div class="icon"><img src="https:${day.condition.icon}"></div>
-    <div class="time">${temp}${tempSign}</div>`;
+  divGroup.innerHTML = insertContetnToDivTimeGroup(temp, tempSign, day);
   return divGroup;
 }
 
@@ -107,24 +131,16 @@ function createDivWithTodayForecast(day, tempUnit, tempSign) {
  * @returns {string} day of week
  */
 function getFullNameWeekDay(numDay) {
-  switch (numDay) {
-    case 0:
-      return "Sunday";
-    case 1:
-      return "Monday";
-    case 2:
-      return "Tuesday";
-    case 3:
-      return "Wednesday";
-    case 4:
-      return "Thursday";
-    case 5:
-      return "Friday";
-    case 6:
-      return "Saturday";
-    default:
-      Error("error getting week day");
-  }
+  const dayNames = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return dayNames[numDay]
 }
 
 /**

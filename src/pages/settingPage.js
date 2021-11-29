@@ -14,10 +14,10 @@ function replaseSettingPage() {
 function changeTemperatureUnit() {
   if (document.querySelector(".tempSettingUnit").textContent === "Celsius") {
     document.querySelector(".tempSettingUnit").textContent = "Fahrenheit";
-    localStorage.temperatureUnit = "f";
+    localStorage.setItem('temperatureUnit', "f");
   } else {
     document.querySelector(".tempSettingUnit").textContent = "Celsius";
-    localStorage.temperatureUnit = "c";
+    localStorage.setItem('temperatureUnit', "c");
   }
   replaseSettingPage();
 }
@@ -34,43 +34,59 @@ function changeWindSpeedUnit() {
 }
 
 /**
- *
- * @param {Object} data
+ * 
+ * @param {string} tempUnit 
+ * @param {number} tempRequest 
+ * @param {string} tempSign 
+ * @param {string} windUnit 
+ * @param {number} windSpeedRequest 
+ * @param {object} location 
+ * @param {object} current 
+ * @returns {string} innerHTML
+ */
+function insertContentToDivSettingPage(tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest, location, current) {
+  return `
+  <div class="locationDiv">
+      <div class="locationCaptionDiv">Your Location Now</div>
+      <div class="locationDescriptionDiv">${location.name}, ${location.country}</div>
+  </div>
+  <div class="locationInfoDiv">
+      <div class="locationIconDiv"><img class="sunrise" src="https:${current.condition.icon}" alt="sunrise" height="150px" width="150px"></div>
+      <div class="locationIconDescriptionDiv">${current.condition.text}</div>
+      <div class="localTempDiv">${tempRequest}${tempSign}</div>
+  </div>
+  <div class="locationExtraInfoDiv">
+      <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${windSpeedRequest} ${windUnit}</div>
+      <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity} %</div>
+      <div class="pressure"><img сlass='imgHumPresSpeed' src="${barometer}" alt="Pres" height="30px" width="30px">${current.pressure_mb} mBar</div>
+  </div>
+  <div class="locationEditDiv">
+      <div class="tempSettingDiv">
+          <div class="tempSettingCaption">Temperature</div>
+          <div class="tempSettingUnit">${tempUnit}</div>
+      </div>
+      <div class="speedWindSettingDiv">
+          <div class="windSpeedSettingCaption">Wind Speed</div>
+          <div class="windSpeedSettingUnit">${windUnit}</div>
+      </div>
+      <div class="sourceSettingDiv">
+          <div class="sourceSettingCaption">Source</div>
+          <div class="sourceSettingUnit">weatherapi.com</div>
+      </div>
+  </div>`;
+}
+
+/**
+ * 
+ * @param {object} data 
+ * @param {HTMLDivElement} divSettingPage 
  */
 function createPage(data, divSettingPage) {
   const { current, location } = data;
   const { temperatureUnit = "c", windSpeedUnit = "kph" } = localStorage;
   const { tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest } =
     getTempWindUnits(temperatureUnit, windSpeedUnit, current);
-  divSettingPage.innerHTML = `
-    <div class="locationDiv">
-        <div class="locationCaptionDiv">Your Location Now</div>
-        <div class="locationDescriptionDiv">${location.name}, ${location.country}</div>
-    </div>
-    <div class="locationInfoDiv">
-        <div class="locationIconDiv"><img class="sunrise" src="https:${current.condition.icon}" alt="sunrise" height="150px" width="150px"></div>
-        <div class="locationIconDescriptionDiv">${current.condition.text}</div>
-        <div class="localTempDiv">${tempRequest}${tempSign}</div>
-    </div>
-    <div class="locationExtraInfoDiv">
-        <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${windSpeedRequest} ${windUnit}</div>
-        <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity} %</div>
-        <div class="pressure"><img сlass='imgHumPresSpeed' src="${barometer}" alt="Pres" height="30px" width="30px">${current.pressure_mb} mBar</div>
-    </div>
-    <div class="locationEditDiv">
-        <div class="tempSettingDiv">
-            <div class="tempSettingCaption">Temperature</div>
-            <div class="tempSettingUnit">${tempUnit}</div>
-        </div>
-        <div class="speedWindSettingDiv">
-            <div class="windSpeedSettingCaption">Wind Speed</div>
-            <div class="windSpeedSettingUnit">${windUnit}</div>
-        </div>
-        <div class="sourceSettingDiv">
-            <div class="sourceSettingCaption">Source</div>
-            <div class="sourceSettingUnit">weatherapi.com</div>
-        </div>
-    </div>`;
+  divSettingPage.innerHTML = insertContentToDivSettingPage(tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest, location, current);
     divSettingPage.addEventListener('click', ({target}) => {
       if(target.className === 'tempSettingUnit') {changeTemperatureUnit()}
       if(target.className === 'windSpeedSettingUnit') {changeWindSpeedUnit()}
