@@ -65,13 +65,14 @@ Click on star icon for add this city to favorite cities list
     │   │   ├── homePage.test.js        # unit test to homePage.js
     │   │   ├── notFoundPage.test.js    # unit test to notFoundPage.js
     │   │   └──settingPage.test.js      # unit test to settingPage.js
-    │   ├── app.js                      # main js-file app 
-    │   ├── colorControlButtons.js      # function to control buttons
-    │   ├── createDomElement.js         # function to create DOM elements
-    │   ├── getResponse.js              # function to get response from API
-    │   ├── router.js                   # function to routing
-    │   ├── similarCityList.js          # functions to create List
-    │   └── tempWindUnits.js            # functions to set units                     
+    │   ├── tests                       # folder for contain utils
+    │   │   ├── colorControlButtons.js  # function to control buttons
+    │   │   ├── createDomElement.js     # function to create DOM elements
+    │   │   ├── getResponse.js          # function to get response from API
+    │   │   ├── router.js               # function to routing
+    │   │   ├── similarCityList.js      # functions to create List
+    │   │   └── tempWindUnits.js        # functions to set units 
+    │   └── app.js                      # main js-file app 
     ├── .babelrc                        # file is your local configuration for your code in your project
     ├── .eslintrc.js                    # file is a configuration file for a tool
     ├── .gitignore                      # text file that tells Git which files or folders to ignore in a project
