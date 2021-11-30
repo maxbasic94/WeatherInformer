@@ -233,11 +233,13 @@ function createPage(data, divInformer) {
   );
   const divNextDays = getDivWithNextDaysForecast(forecast, tempSign, tempUnit);
 
-  divInformer.append(divCurrentInfo);
-  divInformer.append(divHumPresSpeed);
-  divInformer.append(divSun);
-  divInformer.append(divTodayForecast);
-  divInformer.append(divNextDays);
+  divInformer.append(
+    divCurrentInfo,
+    divHumPresSpeed,
+    divSun,
+    divTodayForecast,
+    divNextDays
+  );
 
   document
     .querySelector(".dayForecast")
