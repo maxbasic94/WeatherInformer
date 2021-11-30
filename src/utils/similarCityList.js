@@ -60,6 +60,37 @@ function createCityLi(index, name, country_name, starColor) {
 }
 
 /**
+ * 
+ * @param {Event} event 
+ * @param {Array} favouriteCitiesArr 
+ */
+function addCityToFavouriteList(event, favouriteCitiesArr) {
+  const cityName = event.currentTarget.textContent.split(",")[0];
+  if (event.target.tagName === "svg" || event.target.tagName === "path") {
+    let svgStar = getSvgStar(event);
+    if (svgStar.getAttribute("fill") === "white") {
+      svgStar.setAttribute("fill", "gold");
+      if (!favouriteCitiesArr.includes(cityName)) {
+        favouriteCitiesArr.push(cityName);
+      }
+    } else {
+      svgStar.setAttribute("fill", "white");
+      const index = favouriteCitiesArr.indexOf(cityName);
+      if (index > -1) {
+        favouriteCitiesArr.splice(index, 1);
+      }
+    }
+  } //else {
+  //   localStorage.cityUrl = `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${cityName}&days=4&aqi=no&alerts=no`;
+  //   window.location.hash = "#home";
+  // }
+  localStorage.setItem(
+    "favouriteCitiesArr",
+    JSON.stringify(favouriteCitiesArr)
+  );
+}
+
+/**
  *
  * @param {Promise} citiesArr
  */
@@ -79,31 +110,7 @@ function createCitiesList(citiesArr) {
     let starColor = getStarColor(name);
     const li = createCityLi(index, name, country_name, starColor);
     citiesList.append(li);
-    li.addEventListener("click", (event) => {
-      const cityName = event.currentTarget.textContent.split(",")[0];
-      if (event.target.tagName === "svg" || event.target.tagName === "path") {
-        let svgStar = getSvgStar(event);
-        if (svgStar.getAttribute("fill") === "white") {
-          svgStar.setAttribute("fill", "gold");
-          if (!favouriteCitiesArr.includes(cityName)) {
-            favouriteCitiesArr.push(cityName);
-          }
-        } else {
-          svgStar.setAttribute("fill", "white");
-          const index = favouriteCitiesArr.indexOf(cityName);
-          if (index > -1) {
-            favouriteCitiesArr.splice(index, 1);
-          }
-        }
-      } //else {
-      //   localStorage.cityUrl = `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${cityName}&days=4&aqi=no&alerts=no`;
-      //   window.location.hash = "#home";
-      // }
-      localStorage.setItem(
-        "favouriteCitiesArr",
-        JSON.stringify(favouriteCitiesArr)
-      );
-    });
+    li.addEventListener("click", (event) => addCityToFavouriteList(event, favouriteCitiesArr));
   });
   similarCitiesDiv.append(citiesList);
   document.querySelector(".favouritePage").append(similarCitiesDiv);
