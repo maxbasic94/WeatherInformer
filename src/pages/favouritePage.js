@@ -119,8 +119,7 @@ function createfavouritePage() {
   const divSearch = createDivSearch();
   const divFavouriteCities = createDivFavouriteCities();
 
-  divFavouritePage.append(divSearch);
-  divFavouritePage.append(divFavouriteCities);
+  divFavouritePage.append(divSearch, divFavouriteCities);
 
   divFavouritePage
     .querySelector(".searchForm")
