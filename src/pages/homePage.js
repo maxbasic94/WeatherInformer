@@ -193,6 +193,17 @@ function getDivWithTodayForecats(forecast, current, tempUnit, tempSign) {
 
 /**
  *
+ * @param {Event} event
+ */
+function performScroll(event) {
+  event = window.event || event;
+  var delta = Math.max(-1, Math.min(1, event.wheelDelta || -event.detail));
+  document.querySelector(".dayForecast").scrollLeft -= delta * 40;
+  event.preventDefault();
+}
+
+/**
+ *
  * @param {Object} data
  * @param {HTMLDivElement} divInformer
  */
@@ -228,16 +239,9 @@ function createPage(data, divInformer) {
   divInformer.append(divTodayForecast);
   divInformer.append(divNextDays);
 
-  document.querySelector(".dayForecast").addEventListener(
-    "mousewheel",
-    (event) => {
-      event = window.event || event;
-      var delta = Math.max(-1, Math.min(1, event.wheelDelta || -event.detail));
-      document.querySelector(".dayForecast").scrollLeft -= delta * 40;
-      event.preventDefault();
-    },
-    false
-  );
+  document
+    .querySelector(".dayForecast")
+    .addEventListener("mousewheel", (event) => performScroll(event), false);
 }
 
 /**
