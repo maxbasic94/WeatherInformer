@@ -8,6 +8,35 @@ import createList from "../utils/similarCityList";
 
 /**
  *
+ * @param {object} location
+ * @param {object} current
+ * @param {number} tempRequest
+ * @param {string} tempSign
+ * @param {string} windUnit
+ * @param {number} windSpeedRequest
+ * @returns {string} innerHTML
+ */
+function insertContentToDivFavCity(
+  location,
+  current,
+  tempRequest,
+  tempSign,
+  windUnit,
+  windSpeedRequest
+) {
+  return `
+  <div class="favCityTempDiv">${tempRequest}${tempSign}<img src="https:${current.condition.icon}"  height="50px" width="50px"></div>
+  <div class="favCityLocDiv">${location.name}</div>
+  <div class="favCountryLocDiv">${location.country}</div>
+  <div class="favCityExtraInfoDiv">
+     <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity}%</div>
+     <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${windSpeedRequest} ${windUnit}</div>
+  </div>
+  `;
+}
+
+/**
+ *
  * @param {promise} favCity
  * @returns {HTMLDivElement} favCityDiv
  */
@@ -19,15 +48,14 @@ function createFavCityDiv(favCity) {
       const { temperatureUnit = "c", windSpeedUnit = "kph" } = localStorage;
       const { tempRequest, tempSign, windUnit, windSpeedRequest } =
         getTempWindUnits(temperatureUnit, windSpeedUnit, current);
-      favCityDiv.innerHTML = `
-         <div class="favCityTempDiv">${tempRequest}${tempSign}<img src="https:${current.condition.icon}"  height="50px" width="50px"></div>
-         <div class="favCityLocDiv">${location.name}</div>
-         <div class="favCountryLocDiv">${location.country}</div>
-         <div class="favCityExtraInfoDiv">
-            <div class="humidity"><img сlass='imgHumPresSpeed' src="${humidity}" alt="Hum" height="30px" width="30px">${current.humidity}%</div>
-            <div class="windSpeed"><img сlass='imgHumPresSpeed' src="${windSpeed}" height="30px" width="30px">${windSpeedRequest} ${windUnit}</div>
-         </div>
-         `;
+      favCityDiv.innerHTML = insertContentToDivFavCity(
+        location,
+        current,
+        tempRequest,
+        tempSign,
+        windUnit,
+        windSpeedRequest
+      );
     })
     .catch(alert);
   // favCityDiv.addEventListener("click", () => {console.log('test')});
@@ -59,20 +87,28 @@ function createDivFavouriteCities() {
 
 /**
  *
+ * @returns {string} innerHTML
+ */
+function insertContentToDivSearch() {
+  return `
+  <form class="searchForm">
+        <input class="search" type="text" placeholder="Search">
+        <input class="submit" type="submit" value="" style="background: url(${searchImg}) no-repeat">
+  </form>`;
+}
+
+/**
+ *
  * @returns {HTMLDivElement} divSearch
  */
 function createDivSearch() {
   const divSearch = createDomElement("div", "searchDiv");
-  divSearch.innerHTML = `
-   <form class="searchForm">
-         <input class="search" type="text" placeholder="Search">
-         <input class="submit" type="submit" value="" style="background: url(${searchImg}) no-repeat">
-   </form>`;
+  divSearch.innerHTML = insertContentToDivSearch();
   return divSearch;
 }
 
 /**
- * 
+ *
  * @returns {HTMLDivElement} favourite page
  */
 function createfavouritePage() {
@@ -86,13 +122,17 @@ function createfavouritePage() {
   divFavouritePage.append(divSearch);
   divFavouritePage.append(divFavouriteCities);
 
-  divFavouritePage.querySelector(".searchForm").addEventListener("input", (event) => createList(event));
-  divFavouritePage.querySelector(".searchForm").addEventListener("submit", () => {
-    const newFavouriteCitiesDiv = createDivFavouriteCities();
-    document.querySelector('.favouritePage').lastChild.remove();
-    document.querySelector('.favouritePage').append(newFavouriteCitiesDiv);
-    divFavouritePage.querySelector(".search").value = '';
-  });
+  divFavouritePage
+    .querySelector(".searchForm")
+    .addEventListener("input", (event) => createList(event));
+  divFavouritePage
+    .querySelector(".searchForm")
+    .addEventListener("submit", () => {
+      const newFavouriteCitiesDiv = createDivFavouriteCities();
+      document.querySelector(".favouritePage").lastChild.remove();
+      document.querySelector(".favouritePage").append(newFavouriteCitiesDiv);
+      divFavouritePage.querySelector(".search").value = "";
+    });
   return divFavouritePage;
 }
 
