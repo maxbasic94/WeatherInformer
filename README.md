@@ -65,7 +65,7 @@ Click on star icon for add this city to favorite cities list
     │   │   ├── homePage.test.js        # unit test to homePage.js
     │   │   ├── notFoundPage.test.js    # unit test to notFoundPage.js
     │   │   └──settingPage.test.js      # unit test to settingPage.js
-    │   ├── tests                       # folder for contain utils
+    │   ├── utils                       # folder for contain utils
     │   │   ├── colorControlButtons.js  # function to control buttons
     │   │   ├── createDomElement.js     # function to create DOM elements
     │   │   ├── getResponse.js          # function to get response from API
