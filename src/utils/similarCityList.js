@@ -53,11 +53,6 @@ function createCityLi(index, name, country_name, starColor) {
  * @param {Promise} citiesArr
  */
 function createCitiesList(citiesArr) {
-  if (
-    document.querySelector(".favouritePage").lastChild.className !== "searchDiv"
-  ) {
-    document.querySelector(".favouritePage").lastChild.remove();
-  }
   const lastChildFavouritePage =
     document.querySelector(".favouritePage").lastChild;
   if (lastChildFavouritePage.className !== "searchDiv") {
