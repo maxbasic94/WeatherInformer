@@ -8,12 +8,12 @@ import getResponseData from "../utils/getResponse";
 import createDomElement from "../utils/createDomElement";
 
 /**
- * 
- * @param {string} nameDay 
- * @param {number} maxTemp 
- * @param {number} minTemp 
- * @param {string} tempSign 
- * @param {object} day 
+ *
+ * @param {string} nameDay
+ * @param {number} maxTemp
+ * @param {number} minTemp
+ * @param {string} tempSign
+ * @param {object} day
  * @returns {strinf} InnexHtml
  */
 function insertContentToDivNextDay(nameDay, maxTemp, minTemp, tempSign, day) {
@@ -21,7 +21,7 @@ function insertContentToDivNextDay(nameDay, maxTemp, minTemp, tempSign, day) {
   <div class="nameNextDay">${nameDay}</div>
   <div class="iconNextDay"><img src="https:${day.day.condition.icon}"></div>
   <div class="maxTempNextDay">${maxTemp}${tempSign}</div>
-  <div class="minTempNextDay">${minTemp}${tempSign}</div>`
+  <div class="minTempNextDay">${minTemp}${tempSign}</div>`;
 }
 
 /**
@@ -42,7 +42,13 @@ function createDivWithNextDaysInfo(day, tempSign, tempUnit) {
     maxTemp = day.day.maxtemp_f;
     minTemp = day.day.mintemp_f;
   }
-  divNextDay.innerHTML = insertContentToDivNextDay(nameDay, maxTemp, minTemp, tempSign, day);
+  divNextDay.innerHTML = insertContentToDivNextDay(
+    nameDay,
+    maxTemp,
+    minTemp,
+    tempSign,
+    day
+  );
   return divNextDay;
 }
 
@@ -93,10 +99,10 @@ function getDivWithSunriseSunsetInfo(forecast) {
 }
 
 /**
- * 
- * @param {number} temp 
- * @param {string} tempSign 
- * @param {object} day 
+ *
+ * @param {number} temp
+ * @param {string} tempSign
+ * @param {object} day
  * @returns {string} innerHTML
  */
 function insertContetnToDivTimeGroup(temp, tempSign, day) {
@@ -140,7 +146,7 @@ function getFullNameWeekDay(numDay) {
     "Friday",
     "Saturday",
   ];
-  return dayNames[numDay]
+  return dayNames[numDay];
 }
 
 /**

@@ -7,17 +7,17 @@ import createDomElement from "../utils/createDomElement";
 
 function replaseSettingPage() {
   const newSettingPage = createSettingPage();
-  document.querySelector('.app').innerHTML = '';
-  document.querySelector('.app').append(newSettingPage);
+  document.querySelector(".app").innerHTML = "";
+  document.querySelector(".app").append(newSettingPage);
 }
 
 function changeTemperatureUnit() {
   if (document.querySelector(".tempSettingUnit").textContent === "Celsius") {
     document.querySelector(".tempSettingUnit").textContent = "Fahrenheit";
-    localStorage.setItem('temperatureUnit', "f");
+    localStorage.setItem("temperatureUnit", "f");
   } else {
     document.querySelector(".tempSettingUnit").textContent = "Celsius";
-    localStorage.setItem('temperatureUnit', "c");
+    localStorage.setItem("temperatureUnit", "c");
   }
   replaseSettingPage();
 }
@@ -34,17 +34,25 @@ function changeWindSpeedUnit() {
 }
 
 /**
- * 
- * @param {string} tempUnit 
- * @param {number} tempRequest 
- * @param {string} tempSign 
- * @param {string} windUnit 
- * @param {number} windSpeedRequest 
- * @param {object} location 
- * @param {object} current 
+ *
+ * @param {string} tempUnit
+ * @param {number} tempRequest
+ * @param {string} tempSign
+ * @param {string} windUnit
+ * @param {number} windSpeedRequest
+ * @param {object} location
+ * @param {object} current
  * @returns {string} innerHTML
  */
-function insertContentToDivSettingPage(tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest, location, current) {
+function insertContentToDivSettingPage(
+  tempUnit,
+  tempRequest,
+  tempSign,
+  windUnit,
+  windSpeedRequest,
+  location,
+  current
+) {
   return `
   <div class="locationDiv">
       <div class="locationCaptionDiv">Your Location Now</div>
@@ -77,25 +85,37 @@ function insertContentToDivSettingPage(tempUnit, tempRequest, tempSign, windUnit
 }
 
 /**
- * 
- * @param {object} data 
- * @param {HTMLDivElement} divSettingPage 
+ *
+ * @param {object} data
+ * @param {HTMLDivElement} divSettingPage
  */
 function createPage(data, divSettingPage) {
   const { current, location } = data;
   const { temperatureUnit = "c", windSpeedUnit = "kph" } = localStorage;
   const { tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest } =
     getTempWindUnits(temperatureUnit, windSpeedUnit, current);
-  divSettingPage.innerHTML = insertContentToDivSettingPage(tempUnit, tempRequest, tempSign, windUnit, windSpeedRequest, location, current);
-    divSettingPage.addEventListener('click', ({target}) => {
-      if(target.className === 'tempSettingUnit') {changeTemperatureUnit()}
-      if(target.className === 'windSpeedSettingUnit') {changeWindSpeedUnit()}
-    })
+  divSettingPage.innerHTML = insertContentToDivSettingPage(
+    tempUnit,
+    tempRequest,
+    tempSign,
+    windUnit,
+    windSpeedRequest,
+    location,
+    current
+  );
+  divSettingPage.addEventListener("click", ({ target }) => {
+    if (target.className === "tempSettingUnit") {
+      changeTemperatureUnit();
+    }
+    if (target.className === "windSpeedSettingUnit") {
+      changeWindSpeedUnit();
+    }
+  });
 }
 
 /**
- * 
- * @returns {HTMLDivElement} setting page 
+ *
+ * @returns {HTMLDivElement} setting page
  */
 function createSettingPage() {
   const divSettingPage = createDomElement("div", "settingPage");
@@ -104,7 +124,7 @@ function createSettingPage() {
   )
     .then((data) => createPage(data, divSettingPage))
     .catch(alert);
-  
+
   return divSettingPage;
 }
 
