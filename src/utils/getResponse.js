@@ -2,7 +2,6 @@
  * @param {string} url
  * @returns {Promise} Promise
  */
-
 async function getResponseData(url) {
   const response = await fetch(url, { mode: "cors" });
   if (response.status == 200) {
@@ -10,8 +9,8 @@ async function getResponseData(url) {
     return json;
   }
   if (response.status == 404) {
-    window.location.hash = '#notFaund'
-  } 
+    window.location.hash = "#notFaund";
+  }
   throw new Error(response.status);
 }
 
