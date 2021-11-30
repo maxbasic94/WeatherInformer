@@ -25,10 +25,10 @@ function changeTemperatureUnit() {
 function changeWindSpeedUnit() {
   if (document.querySelector(".windSpeedSettingUnit").textContent === "kph") {
     document.querySelector(".windSpeedSettingUnit").textContent = "mph";
-    localStorage.windSpeedUnit = "mph";
+    localStorage.setItem("windSpeedUnit", "mph");
   } else {
     document.querySelector(".windSpeedSettingUnit").textContent = "kph";
-    localStorage.windSpeedUnit = "kph";
+    localStorage.setItem("windSpeedUnit", "kph");
   }
   replaseSettingPage();
 }
