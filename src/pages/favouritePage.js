@@ -108,6 +108,17 @@ function createDivSearch() {
 }
 
 /**
+ * 
+ * @param {HTMLDivElement} divFavouritePage 
+ */
+function performSearchForm(divFavouritePage) {
+  const newFavouriteCitiesDiv = createDivFavouriteCities();
+  document.querySelector(".favouritePage").lastChild.remove();
+  document.querySelector(".favouritePage").append(newFavouriteCitiesDiv);
+  divFavouritePage.querySelector(".search").value = "";
+}
+
+/**
  *
  * @returns {HTMLDivElement} favourite page
  */
@@ -126,12 +137,7 @@ function createfavouritePage() {
     .addEventListener("input", (event) => createList(event));
   divFavouritePage
     .querySelector(".searchForm")
-    .addEventListener("submit", () => {
-      const newFavouriteCitiesDiv = createDivFavouriteCities();
-      document.querySelector(".favouritePage").lastChild.remove();
-      document.querySelector(".favouritePage").append(newFavouriteCitiesDiv);
-      divFavouritePage.querySelector(".search").value = "";
-    });
+    .addEventListener("submit", () => performSearchForm(divFavouritePage));
   return divFavouritePage;
 }
 
