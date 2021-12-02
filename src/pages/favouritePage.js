@@ -58,7 +58,12 @@ function createFavCityDiv(favCity) {
       );
     })
     .catch(alert);
-  // favCityDiv.addEventListener("click", () => {console.log('test')});
+  // favCityDiv.addEventListener("click", ({currentTarget}) => {
+  //   const cityName = currentTarget.children[1].textContent;
+  //   const newUrl = `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${cityName}&days=4&aqi=no&alerts=no`;
+  //   localStorage.setItem('url', newUrl);
+  //   window.location.hash = '#home';
+  // });
   return favCityDiv;
 }
 
