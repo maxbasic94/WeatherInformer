@@ -69,16 +69,16 @@ function createFavCityDiv(favCity) {
 
 /**
  *
- * @returns {HTMLDivElement} divfavoriteCities
+ * @returns {HTMLDivElement} divFavoriteCities
  */
-function createDivfavoriteCities() {
-  const divfavoriteCities = createDomElement("div", "favoriteCities");
+function createDivFavoriteCities() {
+  const divFavoriteCities = createDomElement("div", "favoriteCities");
   const favCityNamesArray = JSON.parse(
     localStorage.getItem("favoriteCitiesArr")
   );
   if (favCityNamesArray.length > 0) {
     favCityNamesArray.forEach((favCity) => {
-      divfavoriteCities.append(
+      divFavoriteCities.append(
         createFavCityDiv(
           getResponseData(
             `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${favCity}&days=4&aqi=no&alerts=no`
@@ -87,7 +87,7 @@ function createDivfavoriteCities() {
       );
     });
   }
-  return divfavoriteCities;
+  return divFavoriteCities;
 }
 
 /**
@@ -114,36 +114,36 @@ function createDivSearch() {
 
 /**
  * 
- * @param {HTMLDivElement} divfavoritePage 
+ * @param {HTMLDivElement} divFavoritePage 
  */
-function performSearchForm(divfavoritePage) {
-  const newfavoriteCitiesDiv = createDivfavoriteCities();
+function performSearchForm(divFavoritePage) {
+  const newFavoriteCitiesDiv = createDivFavoriteCities();
   document.querySelector(".favoritePage").lastChild.remove();
-  document.querySelector(".favoritePage").append(newfavoriteCitiesDiv);
-  divfavoritePage.querySelector(".search").value = "";
+  document.querySelector(".favoritePage").append(newFavoriteCitiesDiv);
+  divFavoritePage.querySelector(".search").value = "";
 }
 
 /**
  *
  * @returns {HTMLDivElement} favorite page
  */
-function createfavoritePage() {
+function createFavoritePage() {
   if (localStorage.getItem("favoriteCitiesArr") === null) {
     localStorage.setItem("favoriteCitiesArr", JSON.stringify([]));
   }
-  const divfavoritePage = createDomElement("div", "favoritePage");
+  const divFavoritePage = createDomElement("div", "favoritePage");
   const divSearch = createDivSearch();
-  const divfavoriteCities = createDivfavoriteCities();
+  const divFavoriteCities = createDivFavoriteCities();
 
-  divfavoritePage.append(divSearch, divfavoriteCities);
+  divFavoritePage.append(divSearch, divFavoriteCities);
 
-  divfavoritePage
+  divFavoritePage
     .querySelector(".searchForm")
     .addEventListener("input", (event) => createList(event));
-  divfavoritePage
+  divFavoritePage
     .querySelector(".searchForm")
-    .addEventListener("submit", () => performSearchForm(divfavoritePage));
-  return divfavoritePage;
+    .addEventListener("submit", () => performSearchForm(divFavoritePage));
+  return divFavoritePage;
 }
 
-export default createfavoritePage;
+export default createFavoritePage;

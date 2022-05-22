@@ -1,15 +1,15 @@
 import createHomePage from "../pages/homePage";
-import createfavoritePage from "../pages/favoritePage";
+import createFavoritePage from "../pages/favoritePage";
 import createSettingPage from "../pages/settingPage";
 import setColorControlButtons from "./colorControlButtons";
-import createnotFoundPageDiv from "../pages/notFoundPage";
+import createNotFoundPageDiv from "../pages/notFoundPage";
 
 const initUrl = `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=auto:ip&days=4&aqi=no&alerts=no`;
 const app = document.querySelector(".app");
 const homeDiv = createHomePage(initUrl);
-const favoriteDiv = createfavoritePage();
+const favoriteDiv = createFavoritePage();
 const settingDiv = createSettingPage();
-const notFoundPage = createnotFoundPageDiv();
+const notFoundPage = createNotFoundPageDiv();
 
 /**
  *
