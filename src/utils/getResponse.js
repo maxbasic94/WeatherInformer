@@ -9,7 +9,7 @@ async function getResponseData(url) {
     return json;
   }
   if (response.status == 404) {
-    window.location.hash = "#notFaund";
+    window.location.hash = "#notFound";
   }
   throw new Error(response.status);
 }

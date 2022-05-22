@@ -69,16 +69,16 @@ function createFavCityDiv(favCity) {
 
 /**
  *
- * @returns {HTMLDivElement} divFavouriteCities
+ * @returns {HTMLDivElement} divfavoriteCities
  */
-function createDivFavouriteCities() {
-  const divFavouriteCities = createDomElement("div", "favouriteCities");
+function createDivfavoriteCities() {
+  const divfavoriteCities = createDomElement("div", "favoriteCities");
   const favCityNamesArray = JSON.parse(
-    localStorage.getItem("favouriteCitiesArr")
+    localStorage.getItem("favoriteCitiesArr")
   );
   if (favCityNamesArray.length > 0) {
     favCityNamesArray.forEach((favCity) => {
-      divFavouriteCities.append(
+      divfavoriteCities.append(
         createFavCityDiv(
           getResponseData(
             `http://api.weatherapi.com/v1/forecast.json?key=0ca217e793694cf3b27105654211511&q=${favCity}&days=4&aqi=no&alerts=no`
@@ -87,7 +87,7 @@ function createDivFavouriteCities() {
       );
     });
   }
-  return divFavouriteCities;
+  return divfavoriteCities;
 }
 
 /**
@@ -114,36 +114,36 @@ function createDivSearch() {
 
 /**
  * 
- * @param {HTMLDivElement} divFavouritePage 
+ * @param {HTMLDivElement} divfavoritePage 
  */
-function performSearchForm(divFavouritePage) {
-  const newFavouriteCitiesDiv = createDivFavouriteCities();
-  document.querySelector(".favouritePage").lastChild.remove();
-  document.querySelector(".favouritePage").append(newFavouriteCitiesDiv);
-  divFavouritePage.querySelector(".search").value = "";
+function performSearchForm(divfavoritePage) {
+  const newfavoriteCitiesDiv = createDivfavoriteCities();
+  document.querySelector(".favoritePage").lastChild.remove();
+  document.querySelector(".favoritePage").append(newfavoriteCitiesDiv);
+  divfavoritePage.querySelector(".search").value = "";
 }
 
 /**
  *
- * @returns {HTMLDivElement} favourite page
+ * @returns {HTMLDivElement} favorite page
  */
-function createfavouritePage() {
-  if (localStorage.getItem("favouriteCitiesArr") === null) {
-    localStorage.setItem("favouriteCitiesArr", JSON.stringify([]));
+function createfavoritePage() {
+  if (localStorage.getItem("favoriteCitiesArr") === null) {
+    localStorage.setItem("favoriteCitiesArr", JSON.stringify([]));
   }
-  const divFavouritePage = createDomElement("div", "favouritePage");
+  const divfavoritePage = createDomElement("div", "favoritePage");
   const divSearch = createDivSearch();
-  const divFavouriteCities = createDivFavouriteCities();
+  const divfavoriteCities = createDivfavoriteCities();
 
-  divFavouritePage.append(divSearch, divFavouriteCities);
+  divfavoritePage.append(divSearch, divfavoriteCities);
 
-  divFavouritePage
+  divfavoritePage
     .querySelector(".searchForm")
     .addEventListener("input", (event) => createList(event));
-  divFavouritePage
+  divfavoritePage
     .querySelector(".searchForm")
-    .addEventListener("submit", () => performSearchForm(divFavouritePage));
-  return divFavouritePage;
+    .addEventListener("submit", () => performSearchForm(divfavoritePage));
+  return divfavoritePage;
 }
 
-export default createfavouritePage;
+export default createfavoritePage;

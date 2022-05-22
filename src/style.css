@@ -163,9 +163,9 @@ body {
     color: #356880;
 }
 
-/* styles for favouritePage*/
+/* styles for favoritePage*/
 
-.favouritePage {
+.favoritePage {
     flex-grow: 20;
     display: flex;
     flex-direction: column;
@@ -221,7 +221,7 @@ body {
     float: right;
 }
 
-.favouriteCities {
+.favoriteCities {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -229,7 +229,7 @@ body {
     overflow-y: auto;
 }
 
-.favouriteCities::-webkit-scrollbar {
+.favoriteCities::-webkit-scrollbar {
     width: 0;
 }
 

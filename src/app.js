@@ -1,13 +1,13 @@
 import onRouteChanged from "./utils/router";
-import { homeDiv, favouriteDiv, settingDiv, notFaundPage } from './utils/router'
+import { homeDiv, favoriteDiv, settingDiv, notFoundPage } from './utils/router'
 
 import './style.css'
 
 const routes = {
   "#home": homeDiv,
-  "#favourite": favouriteDiv,
+  "#favorite": favoriteDiv,
   "#setting": settingDiv,
-  "#notFaund": notFaundPage,
+  "#notFound": notFoundPage,
 };
 
 window.onload = () => {

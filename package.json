@@ -45,5 +45,14 @@
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@types/react": "^17.0.37"
+  },
+  "cspell": {
+    "ignoreWords": [
+      "Maksim",
+      "Ashmiana",
+      "browserslist",
+      "styl",
+      "weatherinformer"
+    ]
   }
 }

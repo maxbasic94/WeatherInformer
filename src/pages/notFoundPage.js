@@ -4,10 +4,10 @@ import createDomElement from "../utils/createDomElement";
  *
  * @returns {HTMLDivElement} notFound page
  */
-function createNotFaundPageDiv() {
-  const notFaundPageDiv = createDomElement("div", "notFaundDiv");
-  notFaundPageDiv.textContent = "Page not faund";
-  return notFaundPageDiv;
+function createnotFoundPageDiv() {
+  const notFoundPageDiv = createDomElement("div", "notFoundDiv");
+  notFoundPageDiv.textContent = "Page not faund";
+  return notFoundPageDiv;
 }
 
-export default createNotFaundPageDiv;
+export default createnotFoundPageDiv;

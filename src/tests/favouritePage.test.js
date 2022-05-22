@@ -2,11 +2,11 @@
  * @jest-environment jsdom
  */
 import "regenerator-runtime/runtime";
-import createfavouritePage from "../pages/favouritePage";
+import createfavoritePage from "../pages/favoritePage";
 window.alert = jest.fn();
 
 test("homePage has className = `informer`", () => {
   window.alert.mockClear();
-  const testPage = createfavouritePage().getAttribute("class");
-  expect(testPage).toBe("favouritePage");
+  const testPage = createfavoritePage().getAttribute("class");
+  expect(testPage).toBe("favoritePage");
 });

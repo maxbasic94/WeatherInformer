@@ -39,10 +39,10 @@ For change temperature unit on "Celsius" click on inscription "Fahrenheit" \
 For change wind speed unit on "mph" click on inscription "kph" \
 For change wind speed unit on "kph" click on inscription "mph" 
 
-#### Favourite page
-On "Favourite page" you can see:
+#### favorite page
+On "favorite page" you can see:
 * Input for finding the city you need
-* Your favourite cities
+* Your favorite cities
 
 For search city enter the name of the city in the input field. \
 After that you will see cities matching the name. \
@@ -56,12 +56,12 @@ Click on star icon for add this city to favorite cities list
     ├── node_modules                    # all downloaded packages from NPM in your computer for the JavaScript project that you have
     ├── src                             # folder for contain source files
     │   ├── pages                       # folder contain files that create pages to app
-    │   │   ├── favouritePage.js        # js-file that create favourite page to app
+    │   │   ├── favoritePage.js        # js-file that create favorite page to app
     │   │   ├── homePage.js             # js-file that create home page to app
-    │   │   ├── notFoundPage.js         # js-file that create notFaund page to app
+    │   │   ├── notFoundPage.js         # js-file that create notFound page to app
     │   │   └── settingPage.js          # js-file that create setting page to app           
     │   ├── tests                       # folder for contain unit tests 
-    │   │   ├── favouritePage.test.js   # unit test to favouritePage.js
+    │   │   ├── favoritePage.test.js   # unit test to favoritePage.js
     │   │   ├── homePage.test.js        # unit test to homePage.js
     │   │   ├── notFoundPage.test.js    # unit test to notFoundPage.js
     │   │   └──settingPage.test.js      # unit test to settingPage.js
